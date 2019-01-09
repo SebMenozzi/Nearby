@@ -7,7 +7,25 @@
 		<key>Nearby.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>0</integer>
+			<integer>10</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>D13F5ABA21D00B70001B9681</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D13F5AD121D00B71001B9681</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D13F5ADC21D00B71001B9681</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>
