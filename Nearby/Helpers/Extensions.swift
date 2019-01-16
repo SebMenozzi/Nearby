@@ -8,6 +8,20 @@
 
 import UIKit
 
+public extension UIView {
+    func fadeIn(withDuration duration: TimeInterval = 1.0) {
+        UIView.animate(withDuration: duration, animations: {
+            self.alpha = 1.0
+        })
+    }
+    
+    func fadeOut(withDuration duration: TimeInterval = 1.0) {
+        UIView.animate(withDuration: duration, animations: {
+            self.alpha = 0.0
+        })
+    }
+}
+
 extension UIView {
     func setGradientBackground(startColor: UIColor, endColor: UIColor, startpoint: CGPoint, endPoint: CGPoint) {
         let gradientLayer = CAGradientLayer()
@@ -37,33 +51,5 @@ extension UIView {
             viewsDictionary[key] = view
         }
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: format, options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: viewsDictionary))
-    }
-}
-
-let imageCache = NSCache<NSString, UIImage>()
-
-extension UIImageView {
-    func loadImageUsingCache(urlString: String) {
-        
-        self.image = nil
-        
-        // check cache
-        if let cachedImage = imageCache.object(forKey: urlString as NSString) {
-            self.image = cachedImage
-            return
-        }
-        // otherwise fire off a new download
-        let url = URL(string: urlString)
-        URLSession.shared.dataTask(with: url!, completionHandler: { (data, response, error) -> Void in
-            if error != nil {
-                return
-            }
-            DispatchQueue.main.async{
-                if let donwloadedImage = UIImage(data: data!) {
-                    imageCache.setObject(donwloadedImage, forKey: urlString as NSString)
-                    self.image = donwloadedImage
-                }
-            }
-        }).resume()
     }
 }

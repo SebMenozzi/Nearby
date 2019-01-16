@@ -38,7 +38,7 @@ class MenuController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 30
+        return 20
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {

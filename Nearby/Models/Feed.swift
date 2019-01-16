@@ -1,5 +1,5 @@
 //
-//  Room.swift
+//  Feed.swift
 //  Nearby
 //
 //  Created by Sebastien Menozzi on 27/12/2018.
@@ -8,21 +8,22 @@
 
 import Foundation
 
-enum RoomType: String
+enum FeedType: String
 {
-    case public_room
-    case private_room
-    case personal_room
-    case direct_room
+    case public_feed
+    case private_feed
+    case personal_feed
 }
 
-class Room: NSObject {
+class Feed: NSObject {
+    var id: String?
     var identifier: String?
     var name: String?
     var isLocationBased: Bool?
-    var type: RoomType?
-    var lastMessage: String?
+    var type: FeedType?
     var messages: [Message]?
     var users: [User]?
     var numberConnected: Int?
+    var posts: [Post]?
+    var numberPosts: Int?
 }

@@ -10,6 +10,7 @@ import UIKit
 
 class DirectRoomsController: UICollectionViewController {
     
+    /*
     private let cellId = "cellId"
     
     var directRooms: [Room]?
@@ -205,6 +206,7 @@ class DirectRoomCell: BaseCell {
         
         containerView.addConstraintsWithFormat(format: "V:[v0(20)]|", views: hasReadImageView)
     }
+ */
 }
 
 

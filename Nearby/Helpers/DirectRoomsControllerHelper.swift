@@ -10,6 +10,7 @@ import UIKit
 
 extension DirectRoomsController {
     func setupData() {
+        /*
         let room = Room()
         room.identifier = "#test"
         room.name = "Donald"
@@ -17,5 +18,6 @@ extension DirectRoomsController {
         room.type = RoomType.direct_room
         
         directRooms = [room]
+        */
     }
 }

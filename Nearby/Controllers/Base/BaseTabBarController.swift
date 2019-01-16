@@ -47,12 +47,19 @@ class BaseTabBarController: UITabBarController {
     }
     
     private func setupBottomTabBarDesign() {
-        self.tabBar.clipsToBounds = true
-        self.tabBar.layer.cornerRadius = 5
-        self.tabBar.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
+        tabBar.layer.cornerRadius = 5
+        tabBar.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
         
-        self.tabBar.isTranslucent = false
-        self.tabBar.unselectedItemTintColor = UIColor(r: 201, g: 205, b: 209)
+        tabBar.isTranslucent = false
+        tabBar.unselectedItemTintColor = UIColor(r: 201, g: 205, b: 209)
+        
+        let topBorder = CALayer()
+        topBorder.frame = CGRect(x: 0, y: 0, width: 1000, height: 0.5)
+        topBorder.backgroundColor = UIColor(white: 0.5, alpha: 0.1).cgColor
+        
+        tabBar.layer.addSublayer(topBorder)
+        
+        tabBar.clipsToBounds = true
     }
     
     private func createNavController(viewController: UIViewController, title: String, imageName: String, selectedImageName: String) -> UINavigationController {
@@ -64,9 +71,9 @@ class BaseTabBarController: UITabBarController {
         navController.tabBarItem.selectedImage = UIImage(named: selectedImageName)
         navController.navigationBar.prefersLargeTitles = true
         // navigation bar
-        //navController.navigationBar.setValue(true, forKey: "hidesShadow")
-        navController.navigationBar.setBackgroundImage(UIImage(), for: UIBarPosition.any, barMetrics: UIBarMetrics.default)
-        navController.navigationBar.shadowImage = UIImage()
+        navController.navigationBar.setValue(true, forKey: "hidesShadow")
+        //navController.navigationBar.setBackgroundImage(UIImage(), for: UIBarPosition.any, barMetrics: UIBarMetrics.default)
+        //navController.navigationBar.shadowImage = UIImage()
         return navController
     }
     
@@ -79,7 +86,6 @@ class BaseTabBarController: UITabBarController {
         viewControllers = [
             createNavController(viewController: homeController, title: "Home", imageName: "home", selectedImageName: "home_filled"),
             createNavController(viewController: directRoomsController, title: "Friends", imageName: "friends", selectedImageName: "friends_filled"),
-            createNavController(viewController: DiscoverController(), title: "Discover", imageName: "discover", selectedImageName: "discover"),
             createNavController(viewController: searchController, title: "Search", imageName: "search", selectedImageName: "search_filled"),
             createNavController(viewController: profileController, title: "Profile", imageName: "profile", selectedImageName: "profile_filled")
         ]

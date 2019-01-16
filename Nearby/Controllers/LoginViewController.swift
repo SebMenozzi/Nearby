@@ -19,8 +19,14 @@ class LoginViewController: UIViewController {
     
     lazy var phoneNumberRegisterButton: UIButton = {
         let button = UIButton(type: .system)
-        button.backgroundColor = UIColor.white
-        button.setTitleColor(UIColor(r: 255, g: 51, b: 102), for: .normal)
+        //button.backgroundColor = UIColor(white: 1.0, alpha: 0.15)
+        button.backgroundColor = UIColor(white: 1.0, alpha: 1)
+        
+        //button.layer.borderWidth = 2
+        //button.layer.borderColor = UIColor(white: 1.0, alpha: 0.7).cgColor
+        
+        //button.setTitleColor(UIColor(r: 255, g: 255, b: 255), for: .normal)
+        button.setTitleColor(UIColor(r: 255, g: 73, b: 122), for: .normal)
         button.titleLabel?.font = UIFont(name: "GothamRounded-Medium", size: 14)
         button.setTitle("SIGNUP NOW", for: .normal)
         button.addTextSpacing(2.0)
@@ -28,14 +34,16 @@ class LoginViewController: UIViewController {
         button.layer.cornerRadius = 25
         button.layer.masksToBounds = true
         // shadow
-        button.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
-        button.layer.shadowOffset = CGSize(width: 2, height: 0)
-        button.layer.shadowOpacity = 0.2
-        button.layer.shadowRadius = 8
+        button.layer.shadowColor = UIColor.white.cgColor
+        button.layer.shadowOffset = CGSize(width: 1.0, height: 1.0)
+        button.layer.shadowOpacity = 0.4
+        button.layer.shadowRadius = 5.0
         
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(handleFBAccountKitLogin), for: .touchUpInside)
         button.addTarget(self, action: #selector(handleButtonAnimation(button:)), for: .touchDown)
+        
+        button.alpha = 0.6
         return button
     }()
     
@@ -50,17 +58,21 @@ class LoginViewController: UIViewController {
         button.layer.cornerRadius = 25
         button.layer.masksToBounds = true
         // shadow
-        button.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
-        button.layer.shadowOffset = CGSize(width: 2, height: 0)
-        button.layer.shadowOpacity = 0.2
-        button.layer.shadowRadius = 8
+        //button.layer.backgroundColor = UIColor.clear.cgColor
+        button.layer.shadowColor = UIColor.white.cgColor
+        button.layer.shadowOffset = CGSize(width: 1.0, height: 1.0)
+        button.layer.shadowOpacity = 0.4
+        button.layer.shadowRadius = 5.0
         
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(handleFBLogin), for: .touchUpInside)
         button.addTarget(self, action: #selector(handleButtonAnimation(button:)), for: .touchDown)
+        
+        button.alpha = 0.6
         return button
     }()
     
+    /*
     let logoImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "logo")
@@ -68,15 +80,34 @@ class LoginViewController: UIViewController {
         imageView.layer.masksToBounds = true
         return imageView
     }()
+    */
+    let logoLabel: UILabel = {
+        let label = UILabel()
+        label.backgroundColor = UIColor.clear
+        label.textColor = UIColor.white
+        label.font = UIFont(name: "GothamRounded-Medium", size: 35)
+        label.text = "Login."
+        //label.textAlignment = .center
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
     
     let titleTextView: UITextView = {
         let textView = UITextView()
         textView.backgroundColor = UIColor.clear
         textView.textColor = UIColor.white
-        textView.font = UIFont.systemFont(ofSize: 30, weight: UIFont.Weight.thin)
-        //textView.font = UIFont(name: "GothamRounded-Light", size: 30)
-        textView.textAlignment = .center
-        textView.text = "Discover what happens around you."
+        //textView.font = UIFont.systemFont(ofSize: 30, weight: UIFont.Weight.thin)
+        textView.font = UIFont(name: "GothamRounded-Book", size: 30)
+        //textView.textAlignment = .center
+        textView.text = "Express yourself, show your magic ✨"
+        
+        textView.layer.backgroundColor = UIColor.clear.cgColor
+        textView.layer.shadowColor = UIColor.white.cgColor
+        textView.layer.shadowOffset = CGSize(width: 1.0, height: 1.0)
+        textView.layer.shadowOpacity = 0.4
+        textView.layer.shadowRadius = 5.0
+        
+        textView.isEditable = false
         textView.translatesAutoresizingMaskIntoConstraints = false
         return textView
     }()
@@ -105,13 +136,14 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         
         view.setGradientBackground(
-            startColor: UIColor(r: 2, g: 18, b: 35),
-            endColor: UIColor(r: 1, g: 36, b: 89),
-            startpoint: CGPoint(x: 1.0, y: 0.0),
-            endPoint: CGPoint(x: 0.0, y: 1.0)
+            startColor: UIColor(r: 67, g: 34, b: 245),
+            endColor: UIColor(r: 238, g: 54, b: 166),
+            startpoint: CGPoint(x: 0.0, y: 0.0),
+            endPoint: CGPoint(x: 1.0, y: 1.0)
         )
         
-        view.addSubview(logoImageView)
+        //view.addSubview(logoImageView)
+        view.addSubview(logoLabel)
         
         view.addSubview(containerView)
         containerView.addSubview(titleTextView)
@@ -120,15 +152,27 @@ class LoginViewController: UIViewController {
         containerView.addSubview(facebookWarningLabel)
         containerView.addSubview(termsButton)
         
+        setupLogoLabel()
+        
         setupcontainerView()
         setupPhoneNumberRegisterButton()
         setupFacebookRegisterButton()
-        setupLogoImageView()
+        //setupLogoImageView()
         setupTitleTextView()
         setupFacebookWarningLabel()
         setupTermsButton()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        phoneNumberRegisterButton.fadeIn(withDuration: 1)
+        facebookRegisterButton.fadeIn(withDuration: 1)
+        
+        //titleTextView.startShimmering(count: -1)
+    }
+    
+    /*
     func setupLogoImageView() {
         // center horizontally
         logoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
@@ -137,27 +181,41 @@ class LoginViewController: UIViewController {
         // width constraints
         logoImageView.widthAnchor.constraint(equalToConstant: 200).isActive = true
         // top constraints
-        logoImageView.bottomAnchor.constraint(equalTo: view.topAnchor, constant: 200).isActive = true
+        logoImageView.topAnchor.constraint(equalTo: containerView.topAnchor).isActive = true
         // bottom constraints
         logoImageView.bottomAnchor.constraint(equalTo: titleTextView.topAnchor, constant: -15).isActive = true
+    }
+    */
+    
+    func setupLogoLabel() {
+        // width constraints
+        logoLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
+        // height constraints
+        logoLabel.heightAnchor.constraint(equalToConstant: 100).isActive = true
+        // top constraints
+        logoLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 20).isActive = true
     }
     
     func setupcontainerView() {
         // center horizontally
         containerView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         // width constraints
-        containerView.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -25).isActive = true
+        containerView.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -40).isActive = true
         // height constraints
-        containerView.heightAnchor.constraint(equalToConstant: 400).isActive = true
+        containerView.heightAnchor.constraint(equalToConstant: 350).isActive = true
+        // bottom constraints
+        containerView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
     }
     
     func setupTitleTextView() {
         // width constraints
         titleTextView.widthAnchor.constraint(equalTo: containerView.widthAnchor).isActive = true
         // height constraints
-        titleTextView.heightAnchor.constraint(equalToConstant: 90).isActive = true
+        titleTextView.heightAnchor.constraint(equalToConstant: 100).isActive = true
+        // top constraints
+        titleTextView.topAnchor.constraint(equalTo: containerView.topAnchor).isActive = true
         // bottom constraints
-        titleTextView.bottomAnchor.constraint(equalTo: phoneNumberRegisterButton.topAnchor, constant: -25).isActive = true
+        titleTextView.bottomAnchor.constraint(equalTo: phoneNumberRegisterButton.topAnchor).isActive = true
     }
     
     func setupPhoneNumberRegisterButton() {

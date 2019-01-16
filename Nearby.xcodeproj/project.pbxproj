@@ -45,12 +45,20 @@
 		D164C09921D6CB4B00E17E13 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = D164C09821D6CB4B00E17E13 /* Message.swift */; };
 		D164C09B21D6E16700E17E13 /* HomeControllerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D164C09A21D6E16700E17E13 /* HomeControllerHelper.swift */; };
 		D164C09F21D7D9B000E17E13 /* SocketService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D164C09E21D7D9B000E17E13 /* SocketService.swift */; };
+		D1704AF721ED040700CB53FD /* HomeHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1704AF621ED040700CB53FD /* HomeHeader.swift */; };
+		D1704AFA21ED4B6B00CB53FD /* UIView.Extensions.Shimmer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1704AF921ED4B6B00CB53FD /* UIView.Extensions.Shimmer.swift */; };
+		D1704AFC21EE140D00CB53FD /* LoginViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1704AFB21EE140D00CB53FD /* LoginViewController2.swift */; };
+		D1704AFE21EE2EA100CB53FD /* FeedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1704AFD21EE2EA100CB53FD /* FeedController.swift */; };
+		D1704B0021EE341D00CB53FD /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1704AFF21EE341D00CB53FD /* Post.swift */; };
+		D1704B0221EE368C00CB53FD /* CommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1704B0121EE368C00CB53FD /* CommentViewController.swift */; };
+		D1704B0421EE8E6200CB53FD /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1704B0321EE8E6200CB53FD /* PostCell.swift */; };
+		D1704B0621EE90FD00CB53FD /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1704B0521EE90FD00CB53FD /* ImageCache.swift */; };
 		D1DD7D1421D2EA9800D6ECD6 /* GothamRoundedMedium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D1DD7D1121D2EA9800D6ECD6 /* GothamRoundedMedium.ttf */; };
 		D1DD7D1521D2EA9800D6ECD6 /* GothamRoundedBook.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D1DD7D1221D2EA9800D6ECD6 /* GothamRoundedBook.ttf */; };
 		D1DD7D1621D2EA9800D6ECD6 /* GothamRoundedBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D1DD7D1321D2EA9800D6ECD6 /* GothamRoundedBold.ttf */; };
 		D1DD7D1921D2F6FF00D6ECD6 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1DD7D1821D2F6FF00D6ECD6 /* User.swift */; };
 		D1DD7D1B21D3CE7900D6ECD6 /* GothamRoundedLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D1DD7D1A21D3CE7900D6ECD6 /* GothamRoundedLight.ttf */; };
-		D1DD7D2021D5157F00D6ECD6 /* Room.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1DD7D1F21D5157F00D6ECD6 /* Room.swift */; };
+		D1DD7D2021D5157F00D6ECD6 /* Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1DD7D1F21D5157F00D6ECD6 /* Feed.swift */; };
 		D1DD7D2921D53C6800D6ECD6 /* ApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1DD7D2821D53C6800D6ECD6 /* ApiClient.swift */; };
 		D1DD7D2B21D53CE400D6ECD6 /* ApiRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1DD7D2A21D53CE400D6ECD6 /* ApiRouter.swift */; };
 		D1DD7D2D21D6964700D6ECD6 /* NewRoomController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1DD7D2C21D6964700D6ECD6 /* NewRoomController.swift */; };
@@ -123,13 +131,21 @@
 		D164C09821D6CB4B00E17E13 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		D164C09A21D6E16700E17E13 /* HomeControllerHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeControllerHelper.swift; sourceTree = "<group>"; };
 		D164C09E21D7D9B000E17E13 /* SocketService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketService.swift; sourceTree = "<group>"; };
+		D1704AF621ED040700CB53FD /* HomeHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeader.swift; sourceTree = "<group>"; };
+		D1704AF921ED4B6B00CB53FD /* UIView.Extensions.Shimmer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.Extensions.Shimmer.swift; sourceTree = "<group>"; };
+		D1704AFB21EE140D00CB53FD /* LoginViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController2.swift; sourceTree = "<group>"; };
+		D1704AFD21EE2EA100CB53FD /* FeedController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedController.swift; sourceTree = "<group>"; };
+		D1704AFF21EE341D00CB53FD /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		D1704B0121EE368C00CB53FD /* CommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentViewController.swift; sourceTree = "<group>"; };
+		D1704B0321EE8E6200CB53FD /* PostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
+		D1704B0521EE90FD00CB53FD /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 		D1DD7D0921D2538800D6ECD6 /* Nearby.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Nearby.entitlements; sourceTree = "<group>"; };
 		D1DD7D1121D2EA9800D6ECD6 /* GothamRoundedMedium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GothamRoundedMedium.ttf; sourceTree = "<group>"; };
 		D1DD7D1221D2EA9800D6ECD6 /* GothamRoundedBook.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GothamRoundedBook.ttf; sourceTree = "<group>"; };
 		D1DD7D1321D2EA9800D6ECD6 /* GothamRoundedBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GothamRoundedBold.ttf; sourceTree = "<group>"; };
 		D1DD7D1821D2F6FF00D6ECD6 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		D1DD7D1A21D3CE7900D6ECD6 /* GothamRoundedLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GothamRoundedLight.ttf; sourceTree = "<group>"; };
-		D1DD7D1F21D5157F00D6ECD6 /* Room.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Room.swift; sourceTree = "<group>"; };
+		D1DD7D1F21D5157F00D6ECD6 /* Feed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feed.swift; sourceTree = "<group>"; };
 		D1DD7D2821D53C6800D6ECD6 /* ApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiClient.swift; sourceTree = "<group>"; };
 		D1DD7D2A21D53CE400D6ECD6 /* ApiRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiRouter.swift; sourceTree = "<group>"; };
 		D1DD7D2C21D6964700D6ECD6 /* NewRoomController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewRoomController.swift; sourceTree = "<group>"; };
@@ -212,6 +228,7 @@
 		D13F5ABD21D00B70001B9681 /* Nearby */ = {
 			isa = PBXGroup;
 			children = (
+				D1704AF821ED4B5700CB53FD /* Extensions */,
 				D1DD7D2721D53C5700D6ECD6 /* Api */,
 				D1DD7D0921D2538800D6ECD6 /* Nearby.entitlements */,
 				D1DD7D1721D2F6DB00D6ECD6 /* Models */,
@@ -265,6 +282,9 @@
 				D160EE6821DEEE6300D1BE75 /* PollGameController.swift */,
 				D160EE6A21DFC5A800D1BE75 /* ProfileController.swift */,
 				D160EE7121E519DF00D1BE75 /* DiscoverController.swift */,
+				D1704AFB21EE140D00CB53FD /* LoginViewController2.swift */,
+				D1704AFD21EE2EA100CB53FD /* FeedController.swift */,
+				D1704B0121EE368C00CB53FD /* CommentViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -276,6 +296,7 @@
 				D164C09A21D6E16700E17E13 /* HomeControllerHelper.swift */,
 				D160EE4B21D91D8A00D1BE75 /* Extensions.swift */,
 				D160EE5F21DDA64100D1BE75 /* Extensions+UIView.swift */,
+				D1704B0521EE90FD00CB53FD /* ImageCache.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -287,6 +308,8 @@
 				D13F5B0421D00E6E001B9681 /* TouchInterceptingView.swift */,
 				D160EE5D21DDA2EF00D1BE75 /* MenuCell.swift */,
 				D160EE6C21DFC88000D1BE75 /* ProfileHeader.swift */,
+				D1704AF621ED040700CB53FD /* HomeHeader.swift */,
+				D1704B0321EE8E6200CB53FD /* PostCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -316,6 +339,14 @@
 			path = Custom;
 			sourceTree = "<group>";
 		};
+		D1704AF821ED4B5700CB53FD /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				D1704AF921ED4B6B00CB53FD /* UIView.Extensions.Shimmer.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		D1DD7D0A21D2E83E00D6ECD6 /* Ressources */ = {
 			isa = PBXGroup;
 			children = (
@@ -332,9 +363,9 @@
 			isa = PBXGroup;
 			children = (
 				D1DD7D1821D2F6FF00D6ECD6 /* User.swift */,
-				D1DD7D1F21D5157F00D6ECD6 /* Room.swift */,
+				D1DD7D1F21D5157F00D6ECD6 /* Feed.swift */,
 				D164C09821D6CB4B00E17E13 /* Message.swift */,
-				D164C09E21D7D9B000E17E13 /* SocketService.swift */,
+				D1704AFF21EE341D00CB53FD /* Post.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -342,6 +373,7 @@
 		D1DD7D1C21D3D45200D6ECD6 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				D164C09E21D7D9B000E17E13 /* SocketService.swift */,
 				D160EE4D21D92F8E00D1BE75 /* AuthService.swift */,
 				D160EE5221D935C700D1BE75 /* UserDataService.swift */,
 				D160EE5421D956E400D1BE75 /* MessageService.swift */,
@@ -629,7 +661,9 @@
 				D160EE5E21DDA2EF00D1BE75 /* MenuCell.swift in Sources */,
 				D1DD7D1921D2F6FF00D6ECD6 /* User.swift in Sources */,
 				D13F5AFB21D00D8A001B9681 /* LoginViewController.swift in Sources */,
-				D1DD7D2021D5157F00D6ECD6 /* Room.swift in Sources */,
+				D1704AF721ED040700CB53FD /* HomeHeader.swift in Sources */,
+				D1DD7D2021D5157F00D6ECD6 /* Feed.swift in Sources */,
+				D1704AFA21ED4B6B00CB53FD /* UIView.Extensions.Shimmer.swift in Sources */,
 				D1DD7D2921D53C6800D6ECD6 /* ApiClient.swift in Sources */,
 				D13F5AFD21D00D8A001B9681 /* BaseTabBarController.swift in Sources */,
 				D160EE6921DEEE6300D1BE75 /* PollGameController.swift in Sources */,
@@ -639,8 +673,10 @@
 				D160EE5121D92FD900D1BE75 /* Constants.swift in Sources */,
 				D13F5AF921D00D8A001B9681 /* DirectRoomsController.swift in Sources */,
 				D160EE7221E519E000D1BE75 /* DiscoverController.swift in Sources */,
+				D1704B0221EE368C00CB53FD /* CommentViewController.swift in Sources */,
 				D164C09921D6CB4B00E17E13 /* Message.swift in Sources */,
 				D1DD7D2D21D6964700D6ECD6 /* NewRoomController.swift in Sources */,
+				D1704B0021EE341D00CB53FD /* Post.swift in Sources */,
 				D13F5AC721D00B70001B9681 /* Nearby.xcdatamodeld in Sources */,
 				D160EE6021DDA64100D1BE75 /* Extensions+UIView.swift in Sources */,
 				D13F5B0721D00E6E001B9681 /* ChatMessageViewCell.swift in Sources */,
@@ -655,10 +691,14 @@
 				D160EE5321D935C700D1BE75 /* UserDataService.swift in Sources */,
 				D160EE7021DFCE8D00D1BE75 /* ProfileHeaderLayout.swift in Sources */,
 				D13F5AFA21D00D8A001B9681 /* BottomSheetViewController.swift in Sources */,
+				D1704B0421EE8E6200CB53FD /* PostCell.swift in Sources */,
+				D1704AFC21EE140D00CB53FD /* LoginViewController2.swift in Sources */,
 				D160EE6B21DFC5A800D1BE75 /* ProfileController.swift in Sources */,
 				D13F5AFE21D00D8A001B9681 /* ChatViewController.swift in Sources */,
 				D13F5ABF21D00B70001B9681 /* AppDelegate.swift in Sources */,
+				D1704AFE21EE2EA100CB53FD /* FeedController.swift in Sources */,
 				D164C09F21D7D9B000E17E13 /* SocketService.swift in Sources */,
+				D1704B0621EE90FD00CB53FD /* ImageCache.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
