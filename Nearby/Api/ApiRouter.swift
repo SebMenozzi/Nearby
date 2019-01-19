@@ -8,15 +8,29 @@
 import Alamofire
 
 public enum ApiRouter {
-    case loginWithFacebook(String)
-    case loginWithAccountKit(String)
+    case loginWithFacebook(access_token: String)
+    case loginWithAccountKit(access_token: String)
     
-    public var resource: (method: HTTPMethod, route: String) {
+    public var method: HTTPMethod {
         switch self {
-            case .loginWithFacebook(let accessToken):
-                return (.get, "/auth/loginWithFacebook?access_token=\(accessToken)")
-            case .loginWithAccountKit(let accessToken):
-                return (.get, "/auth/loginWithAccountKit?access_token=\(accessToken)")
+            case .loginWithFacebook, .loginWithAccountKit:
+                return .post
+        }
+    }
+    
+    public var path: String {
+        switch self {
+            case .loginWithFacebook:
+                return "/auth/withFacebook"
+            case .loginWithAccountKit:
+                return "/auth/withAccountKit"
+        }
+    }
+        
+    public var parameters: Parameters? {
+        switch self {
+            case .loginWithFacebook(let access_token), .loginWithAccountKit(let access_token):
+                return [ "access_token": access_token ]
         }
     }
 }

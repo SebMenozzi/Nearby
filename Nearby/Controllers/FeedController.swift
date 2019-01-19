@@ -39,8 +39,6 @@ class FeedController: UICollectionViewController {
         
         collectionView?.register(PostCell.self, forCellWithReuseIdentifier: cellId)
         
-        collectionView?.keyboardDismissMode = .interactive
-        
         setupNavigationItems()
         
         // lock the slide menu
@@ -56,45 +54,85 @@ class FeedController: UICollectionViewController {
         
         if let mainWindow = UIApplication.shared.keyWindow {
             blackBackgroundView.frame = mainWindow.frame
-            blackBackgroundView.backgroundColor = .black
-            blackBackgroundView.alpha = 0
+            blackBackgroundView.backgroundColor = .clear
             mainWindow.addSubview(blackBackgroundView)
             
-            zoomImageView.backgroundColor = UIColor.red
+            zoomImageView.backgroundColor = UIColor.black
             zoomImageView.frame = startingFrame!
             zoomImageView.isUserInteractionEnabled = true
             zoomImageView.image = statusImageView.image
-            zoomImageView.contentMode = .scaleAspectFill
+            zoomImageView.contentMode = .scaleAspectFit
             // reset corner radius
             zoomImageView.layer.cornerRadius = 0
             zoomImageView.layer.masksToBounds = false
-            mainWindow.addSubview(zoomImageView)
+            blackBackgroundView.addSubview(zoomImageView)
             
-            zoomImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleZoomOut)))
-            blackBackgroundView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleZoomOut)))
+            blackBackgroundView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTap)))
+            let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(handlePan))
+            blackBackgroundView.addGestureRecognizer(panGestureRecognizer)
             
             UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0.5, options: .curveEaseOut, animations: {
                 
-                self.zoomImageView.frame = CGRect(x: 0, y: 0, width: mainWindow.frame.width, height: self.startingFrame!.height)
+                self.zoomImageView.frame = CGRect(x: 0, y: 0, width: mainWindow.frame.width, height: mainWindow.frame.height)
                 self.zoomImageView.center = mainWindow.center
                 
-                self.blackBackgroundView.alpha = 1
+                self.blackBackgroundView.backgroundColor = .black
             }, completion: nil)
         }
     }
     
-    @objc func handleZoomOut(tapGesture: UITapGestureRecognizer) {
+    private func zoomOut() {
+        zoomImageView.makeCorner(withRadius: 16)
+        
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0.5, options: .curveEaseOut, animations: {
+            self.zoomImageView.frame = self.startingFrame!
+            self.blackBackgroundView.backgroundColor = .clear
+        }) { (didComplete) in
+            self.blackBackgroundView.removeFromSuperview()
+            self.statusImageView?.isHidden = false
+        }
+    }
+    
+    @objc func handleTap(tapGesture: UITapGestureRecognizer) {
         if tapGesture.view != nil {
-            zoomImageView.makeCorner(withRadius: 16)
-            
-            UIView.animate(withDuration: 0.75, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0.5, options: .curveEaseOut, animations: {
-                self.zoomImageView.frame = self.startingFrame!
-                self.blackBackgroundView.alpha = 0
-            }) { (didComplete) in
-                self.zoomImageView.removeFromSuperview()
-                self.blackBackgroundView.removeFromSuperview()
-                self.statusImageView?.isHidden = false
-            }
+            zoomOut()
+        }
+    }
+    
+    var originalPosition: CGPoint?
+    var identity: CGAffineTransform?
+    
+    @objc func handlePan(panGesture: UIPanGestureRecognizer) {
+        
+        let translation = panGesture.translation(in: zoomImageView)
+        let velocity = panGesture.velocity(in: zoomImageView)
+        
+        switch panGesture.state {
+            case .began:
+                originalPosition = zoomImageView.center
+                identity = zoomImageView.transform
+            case .changed:
+                blackBackgroundView.backgroundColor = .clear
+                zoomImageView.frame.origin = CGPoint(x: translation.x, y: translation.y)
+                /*
+                let scale = 1 - abs(translation.y) / zoomImageView.frame.size.height
+                print(scale)
+                if scale > 0 {
+                    zoomImageView.transform = identity!.scaledBy(x: scale, y: scale)
+                }
+                */
+            case .ended, .cancelled:
+                if abs(velocity.x) >= 150 || abs(velocity.y) >= 150 {
+                    zoomOut()
+                } else {
+                    UIView.animate(withDuration: 0.3, animations: {
+                        self.blackBackgroundView.backgroundColor = .black
+                        self.zoomImageView.center = self.originalPosition!
+                        self.zoomImageView.transform = self.identity!
+                    })
+                }
+            case .failed, .possible:
+                break
         }
     }
     
@@ -147,14 +185,22 @@ extension FeedController : UICollectionViewDelegateFlowLayout {
     
     private func estimateFrameForText(text: String) -> CGRect {
         let size = CGSize(width: view.frame.width, height: 1000)
-        let options = NSStringDrawingOptions.usesFontLeading.union(NSStringDrawingOptions.usesLineFragmentOrigin)
-        let attributes = [ NSAttributedString.Key.font: UIFont(name: "GothamRounded-Medium", size: 18)! ]
+        let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
+        let attributes = [ NSAttributedString.Key.font: UIFont(name: "GothamRounded-Book", size: 18)! ]
         return NSString(string: text).boundingRect(
             with: size,
             options: options,
             attributes: attributes,
             context: nil
         )
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let layout = UICollectionViewFlowLayout()
+        let controller = CommentController(collectionViewLayout: layout)
+        let post = feed?.posts?[indexPath.item]
+        controller.post = post
+        navigationController?.pushViewController(controller, animated: true)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {

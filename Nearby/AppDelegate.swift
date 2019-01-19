@@ -24,8 +24,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         window = UIWindow(frame: UIScreen.main.bounds)
         // Make this window visible
         window?.makeKeyAndVisible()
-        //window?.rootViewController = CustomTabBarController()
-        window?.rootViewController = BaseSlidingController()
+        window?.rootViewController = BaseTabBarController()
+        //window?.rootViewController = BaseSlidingController()
+        //window?.rootViewController = SignupNameController()
         window?.makeCorner(withRadius: 5)
         
         // Override point for customization after application launch.

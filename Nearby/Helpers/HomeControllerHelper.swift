@@ -12,26 +12,20 @@ extension HomeController {
     func setupData() {
         
         // Users
-        let seb = User(dictionary: [
-            "id" : 2,
-            "picture": "seb",
-            "name": "Seb 🔥",
-            "username": "seb"
-        ])
+        let seb = User()
+        seb.picture = "seb"
+        seb.name = "Seb 🔥"
+        seb.username = "seb"
         
-        let cesar = User(dictionary: [
-            "id" : 3,
-            "picture": "cesar",
-            "name": "MattGorko 🕺",
-            "username": "cesar"
-        ])
+        let cesar = User()
+        cesar.picture = "cesar"
+        cesar.name = "MattGorko 🕺"
+        cesar.username = "cesar"
         
-        let steve = User(dictionary: [
-            "id" : 4,
-            "picture": "steve",
-            "name": "Steve Jobs",
-            "username": "steve"
-        ])
+        let steve = User()
+        steve.picture = "steve"
+        steve.name = "Steve Jobs"
+        steve.username = "steve"
         
         // France
         
@@ -47,13 +41,26 @@ extension HomeController {
         france_post1.text = "Ceci est un post !"
         france_post1.mediaType = MediaType.none
         france_post1.commentsCount = 12
-        france_post1.comments = []
+        
+        // comment 1
+        let france_post1_comment1 = Comment()
+        france_post1_comment1.user = seb
+        france_post1_comment1.text = "vive le cul et les nudes 😂🔞"
+        france_post1_comment1.mediaType = MediaType.none
+        
+        // comment 2
+        let france_post1_comment2 = Comment()
+        france_post1_comment2.user = steve
+        france_post1_comment2.text = "Vazy c dégueulasse va parler de ça en privé avec tes potes les pervers"
+        france_post1_comment2.mediaType = MediaType.none
+        
+        france_post1.comments = [ france_post1_comment1, france_post1_comment2 ]
         
         let france_post2 = Post()
         france_post2.user = cesar
         france_post2.text = "J'aime les grosses bites de noirs 🍆"
         france_post2.mediaType = MediaType.photo
-        france_post2.media = "https://scontent-cdg2-1.xx.fbcdn.net/v/t1.15752-9/49898248_279526686054443_1034684095784812544_n.jpg?_nc_cat=111&_nc_ht=scontent-cdg2-1.xx&oh=bb9816cf528c9a4c452d2c301da4c643&oe=5CBB3FA3"
+        france_post2.media = "https://sossafetymagazine.com/wp-content/uploads/A-Snapchat-Guide-for-Parents-snap-example.jpg"
         france_post2.commentsCount = 3
         france_post2.comments = []
         

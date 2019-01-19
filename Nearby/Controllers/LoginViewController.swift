@@ -40,7 +40,7 @@ class LoginViewController: UIViewController {
         button.layer.shadowRadius = 5.0
         
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.addTarget(self, action: #selector(handleFBAccountKitLogin), for: .touchUpInside)
+        //button.addTarget(self, action: #selector(handleFBAccountKitLogin), for: .touchUpInside)
         button.addTarget(self, action: #selector(handleButtonAnimation(button:)), for: .touchDown)
         
         button.alpha = 0.6
@@ -65,7 +65,7 @@ class LoginViewController: UIViewController {
         button.layer.shadowRadius = 5.0
         
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.addTarget(self, action: #selector(handleFBLogin), for: .touchUpInside)
+        //button.addTarget(self, action: #selector(handleFBLogin), for: .touchUpInside)
         button.addTarget(self, action: #selector(handleButtonAnimation(button:)), for: .touchDown)
         
         button.alpha = 0.6
@@ -251,7 +251,7 @@ class LoginViewController: UIViewController {
         // height constraints
         termsButton.heightAnchor.constraint(equalToConstant: 15).isActive = true
     }
-    
+    /*
     @objc func handleFBLogin() {
         AuthService.instance.loginWithFacebook(viewController: self)
     }
@@ -259,7 +259,7 @@ class LoginViewController: UIViewController {
     @objc func handleFBAccountKitLogin() {
         AuthService.instance.loginWithAccountKit(viewController: self)
     }
-    
+    */
     @objc func handleButtonAnimation(button: UIButton) {
         button.scale()
     }
@@ -269,36 +269,7 @@ class LoginViewController: UIViewController {
     }
 }
 
-extension UIButton {
-    func addTextSpacing(_ letterSpacing: CGFloat) {
-        let attributedString = NSMutableAttributedString(string: (self.titleLabel?.text)!)
-        attributedString.addAttribute(NSAttributedString.Key.kern, value: letterSpacing, range: NSRange(location: 0, length: (self.titleLabel?.text!.count)!))
-        self.setAttributedTitle(attributedString, for: .normal)
-    }
-    
-    func scale() {
-        let scale = CASpringAnimation(keyPath: "transform.scale")
-        scale.duration = 0.2
-        scale.fromValue = 1.0
-        scale.toValue = 0.95
-        scale.initialVelocity = 0.7
-        scale.damping = 1.0
-        scale.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
-        scale.autoreverses = true
-        
-        layer.add(scale, forKey: nil)
-        
-        let flash = CABasicAnimation(keyPath: "opacity")
-        flash.duration = 0.2
-        flash.fromValue = 1
-        flash.toValue = 0.9
-        flash.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
-        flash.autoreverses = false
-        
-        layer.add(flash, forKey: nil)
-    }
-}
-
+/*
 extension LoginViewController: AKFViewControllerDelegate {
     
     func prepareLoginViewController(viewController: AKFViewController) {
@@ -320,3 +291,4 @@ extension LoginViewController: AKFViewControllerDelegate {
         }
     }
 }
+*/

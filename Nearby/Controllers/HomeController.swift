@@ -36,7 +36,7 @@ class HomeController : UICollectionViewController, UIGestureRecognizerDelegate {
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "menu"), style: .plain, target: self, action: #selector(handleOpen))
         navigationItem.leftBarButtonItem?.tintColor = UIColor.black
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "New Feed", style: .plain, target: self, action: #selector(handleNewRoom))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(handleLogout))
     }
     
     @objc func handleNewRoom() {
@@ -64,7 +64,7 @@ class HomeController : UICollectionViewController, UIGestureRecognizerDelegate {
     @objc func handleLogout(withoutAnimation: Bool = false) {
         AuthService.instance.logout()
         
-        self.present(LoginViewController2(), animated: !withoutAnimation, completion: nil)
+        self.present(LoginController(), animated: !withoutAnimation, completion: nil)
     }
 }
 
@@ -116,7 +116,6 @@ extension HomeController : UICollectionViewDelegateFlowLayout {
     }
     */
 }
-
 
 class FeedCell: BaseCell {
     override var isHighlighted: Bool {

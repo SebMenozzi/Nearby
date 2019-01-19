@@ -23,7 +23,7 @@ class SocketService: NSObject {
         // retrieve the token in the keychain
         let token: String = KeychainWrapper.standard.string(forKey: "userToken")!
         
-        self.manager = SocketManager(socketURL: URL(string: "http://192.168.1.8:3000")!, config: [.log(true), .compress, .connectParams(["token": token])])
+        self.manager = SocketManager(socketURL: URL(string: "http://192.168.1.8:3000")!, config: [.log(false), .compress, .connectParams(["token": token])])
         self.socket = self.manager?.defaultSocket
         
         listenToSocketEvent()

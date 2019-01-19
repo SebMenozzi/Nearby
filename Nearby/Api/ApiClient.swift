@@ -12,7 +12,7 @@ import Hydra
 typealias JSON = [String: Any]
 
 public enum ServerURL: String {
-    case base = "http://192.168.1.8:3000/api"
+    case base = "https://akasi.ovh/api"
 }
 
 class APIClient {
@@ -25,15 +25,15 @@ class APIClient {
     public func request(_ route: ApiRouter, parameters: [String: Any] = [:], headers: HTTPHeaders = [:]) -> Promise<JSON> {
         
         return Promise<JSON>(in: .background, { resolve, reject, _  in
-            let method = route.resource.method
-            let url = "\(self.baseURL)\(route.resource.route)"
+            let method = route.method
+            let url = "\(self.baseURL)\(route.path)"
             
             Alamofire.request(url,
                               method: method,
-                              parameters: (method == .get ? nil : parameters),
+                              parameters: (method == .get ? nil : route.parameters),
                               encoding: JSONEncoding.default,
                               headers: headers
-                             ).responseJSON { (response) in
+                             ).responseJSON { (response) in                    
                 switch response.result {
                     case .success(let json):
                         guard let json = json as? JSON else {

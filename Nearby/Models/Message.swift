@@ -18,7 +18,7 @@ class Message: NSObject {
         guard let dictionary = dictionary else { return }
         text = dictionary["text"] as? String
         date = dictionary["date"] as? Date
-        user = User(dictionary: dictionary["user"] as? [String : Any])
+        //user = User(dictionary: dictionary["user"] as? [String : Any])
     }
     
     func isSender() -> Bool? {
@@ -27,9 +27,9 @@ class Message: NSObject {
         do {
             let jwt: JSONWebToken = try JSONWebToken(string : token!)
             
-            let id = jwt.payload["id"] as! Int
+            let public_id = jwt.payload["public_id"] as! String
             
-            return self.user?.id == id
+            return self.user?.public_id == public_id
         } catch {
             return false
         }

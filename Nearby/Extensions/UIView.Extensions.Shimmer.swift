@@ -10,9 +10,6 @@ import Foundation
 import UIKit
 import Dispatch
 
-/*
- It is convenient if anything that can simmer conforms to this protocol
- */
 protocol Shimmerable {
     func startShimmering(count: Int) -> Void
     func stopShimmering() -> Void
@@ -21,13 +18,8 @@ protocol Shimmerable {
     var isShimmering: Bool {get}
 }
 
-
-@IBDesignable
 extension UIView: Shimmerable {
     
-    /*
-     A way to store the custom properties
-     */
     private struct UIViewCustomShimmerProperties {
         static let shimmerKey:String = "shimmer"
         static var lightShimmerColor:CGColor = UIColor.white.withAlphaComponent(0.1).cgColor
@@ -37,10 +29,6 @@ extension UIView: Shimmerable {
         static var animation:CABasicAnimation = CABasicAnimation(keyPath: "locations")
     }
     
-    /*
-     Set shimmer properties
-     */
-    @IBInspectable
     var lightShimmerColor: UIColor {
         get {
             return UIColor(cgColor: UIViewCustomShimmerProperties.lightShimmerColor)
@@ -50,7 +38,6 @@ extension UIView: Shimmerable {
         }
     }
     
-    @IBInspectable
     var darkShimmerColor: UIColor {
         get {
             return UIColor(cgColor: UIViewCustomShimmerProperties.darkShimmerColor)
@@ -118,4 +105,5 @@ extension UIView: Shimmerable {
         
         //CATransaction.commit()
     }
+    
 }

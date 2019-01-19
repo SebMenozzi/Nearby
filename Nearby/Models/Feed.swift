@@ -16,7 +16,7 @@ enum FeedType: String
 }
 
 class Feed: NSObject {
-    var id: String?
+    var public_id: String?
     var identifier: String?
     var name: String?
     var isLocationBased: Bool?

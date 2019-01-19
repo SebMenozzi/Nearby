@@ -1,5 +1,5 @@
 //
-//  LoginViewController2.swift
+//  LoginController.swift
 //  Nearby
 //
 //  Created by Sebastien Menozzi on 12/12/2018.
@@ -9,7 +9,7 @@
 import UIKit
 import AccountKit
 
-class LoginViewController2: UIViewController {
+class LoginController: UIViewController {
     
     lazy var phoneNumberRegisterButton: UIButton = {
         let button = UIButton(type: .system)
@@ -31,7 +31,7 @@ class LoginViewController2: UIViewController {
         button.layer.shadowRadius = 5.0
         
         button.translatesAutoresizingMaskIntoConstraints = false
-        //button.addTarget(self, action: #selector(handleFBAccountKitLogin), for: .touchUpInside)
+        button.addTarget(self, action: #selector(handleFBAccountKitLogin), for: .touchUpInside)
         
         button.alpha = 0.6
         return button
@@ -51,7 +51,7 @@ class LoginViewController2: UIViewController {
         button.layer.shadowRadius = 5.0
         
         button.translatesAutoresizingMaskIntoConstraints = false
-        //button.addTarget(self, action: #selector(handleFBLogin), for: .touchUpInside)
+        button.addTarget(self, action: #selector(handleFBLogin), for: .touchUpInside)
         
         button.alpha = 0.6
         return button
@@ -159,11 +159,38 @@ class LoginViewController2: UIViewController {
         facebookRegisterButton.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
     }
     
-    @objc func handleButtonAnimation(button: UIButton) {
-        button.scale()
+    @objc func handleFBLogin() {
+        AuthService.instance.loginWithFacebook(viewController: self)
+    }
+    
+    @objc func handleFBAccountKitLogin() {
+        AuthService.instance.loginWithAccountKit(viewController: self)
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
+    }
+}
+
+extension LoginController: AKFViewControllerDelegate {
+    
+    func prepareLoginViewController(viewController: AKFViewController) {
+        viewController.delegate = self
+        
+        viewController.uiManager = AKFSkinManager(skinType: .classic, primaryColor: UIColor.black)
+    }
+    
+    func viewControllerDidCancel(_ viewController: (UIViewController & AKFViewController)!) {
+        print("Cancel Account Kit")
+        AuthService.instance.isLoading = false
+    }
+    
+    func viewController(_ viewController: (UIViewController & AKFViewController)!, didCompleteLoginWith accessToken: AKFAccessToken!, state: String!) {
+        
+        let route: ApiRouter = .loginWithAccountKit(access_token: accessToken.tokenString)
+        
+        AuthService.instance.handleAuthentification(route).then { response in
+            self.dismiss(animated: true, completion: nil)
+        }
     }
 }

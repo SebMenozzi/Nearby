@@ -17,6 +17,8 @@ class AuthService {
     
     static let instance = AuthService()
     
+    var isLoading: Bool = false
+    
     var authToken: String {
         get {
             return KeychainWrapper.standard.string(forKey: TOKEN_KEY) ?? ""
@@ -28,7 +30,6 @@ class AuthService {
     
     var isLoggedIn : Bool {
         get {
-            /*
             do {
                 let jwt: JSONWebToken = try JSONWebToken(string : self.authToken)
                 
@@ -38,8 +39,6 @@ class AuthService {
             } catch {
                 return false
             }
-            */
-            return true
         }
     }
     
@@ -49,23 +48,36 @@ class AuthService {
     // request the token via the Api and save it
     public func handleAuthentification(_ route: ApiRouter) -> Promise<JSON> {
         return APIClient().request(route).then { response in
-            self.authToken = response["token"] as! String
+            if let token = response["token"] as! String? {
+                self.authToken = token
+                print(token)
+            }
+            
+            if let user = response["user"] as! String? {
+                print(user)
+            }
+            
+            self.isLoading = false
         }
     }
     
-    public func loginWithFacebook(viewController: LoginViewController) {
+    public func loginWithFacebook(viewController: LoginController) {
+        self.isLoading = true
+        
         fbSDKManager.logIn(withReadPermissions: ["public_profile", "email", "user_birthday", "user_gender"], from: viewController) {
             (result, error) in
             if error != nil {
-                print("error")
+                print("Error Facebook Login")
+                self.isLoading = false
             } else if (result?.isCancelled)! {
-                print("Cancelled")
+                print("Cancelled Facebook Login")
+                self.isLoading = false
             } else {
                 print("Successfully connected to Facebook")
                 
                 if result!.grantedPermissions != nil && result!.grantedPermissions.contains("email") {
                     if FBSDKAccessToken.current() != nil, let accessToken = FBSDKAccessToken.current().tokenString {
-                        let route: ApiRouter = .loginWithFacebook(accessToken)
+                        let route: ApiRouter = .loginWithFacebook(access_token: accessToken)
                         
                         self.handleAuthentification(route).then { response in
                             viewController.dismiss(animated: true, completion: nil)
@@ -76,7 +88,9 @@ class AuthService {
         }
     }
     
-    public func loginWithAccountKit(viewController: LoginViewController) {
+    public func loginWithAccountKit(viewController: LoginController) {
+        self.isLoading = true
+        
         let inputState = UUID().uuidString
         
         let vc = accountKitManager.viewControllerForPhoneLogin(with: nil, state: inputState) as AKFViewController
