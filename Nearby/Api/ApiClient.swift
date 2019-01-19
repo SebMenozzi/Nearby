@@ -22,7 +22,7 @@ class APIClient {
         self.baseURL = baseURL.rawValue
     }
     
-    public func request(_ route: ApiRouter, parameters: [String: Any] = [:], headers: HTTPHeaders = [:]) -> Promise<JSON> {
+    public func request(route: ApiRouter) -> Promise<JSON> {
         
         return Promise<JSON>(in: .background, { resolve, reject, _  in
             let method = route.method
@@ -32,7 +32,7 @@ class APIClient {
                               method: method,
                               parameters: (method == .get ? nil : route.parameters),
                               encoding: JSONEncoding.default,
-                              headers: headers
+                              headers: route.headers
                              ).responseJSON { (response) in                    
                 switch response.result {
                     case .success(let json):

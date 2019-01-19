@@ -41,4 +41,13 @@ public enum ApiRouter {
                 return [ "user": user ]
         }
     }
+    
+    public var headers: HTTPHeaders {
+        switch self {
+        case .loginWithFacebook, .loginWithAccountKit:
+            return [:]
+        case .updateUser:
+            return [ "token": AuthService.instance.authToken ]
+        }
+    }
 }

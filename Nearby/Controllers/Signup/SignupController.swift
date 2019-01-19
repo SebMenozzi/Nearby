@@ -174,7 +174,7 @@ class SignupController: UIViewController {
     }
     
     func goToNext() {
-        AuthService.instance.redirectAfterAuthentification(viewController: self, user: user)
+        AuthService.instance.redirectAfterAuthentification(vc: self, user: user)
     }
     
     func next() {

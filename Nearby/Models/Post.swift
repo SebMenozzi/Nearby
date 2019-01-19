@@ -15,7 +15,7 @@ enum MediaType: String {
 }
 
 class Post: NSObject {
-    var id: String?
+    var public_id: String?
     var user: User?
     var text: String?
     var media: String?

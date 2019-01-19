@@ -8,12 +8,6 @@
 
 import Foundation
 
-enum Gender: String {
-    case male
-    case female
-    case none
-}
-
 class User : NSObject {
     var public_id: String?
     var username: String?
@@ -21,8 +15,8 @@ class User : NSObject {
     var email: String?
     var phoneNumber: String?
     var picture: String?
-    var gender: Gender?
-    var birthday: Date?
+    var gender: String?
+    var birthday: String?
     
     init(dictionary: [String: Any]?) {
         guard let dictionary = dictionary else { return }
@@ -32,7 +26,19 @@ class User : NSObject {
         email = dictionary["email"] as? String
         phoneNumber = dictionary["phoneNumber"] as? String
         picture = dictionary["picture"] as? String
-        gender = Gender(rawValue: dictionary["gender"] as? String ?? "none")
-        birthday = dictionary["birthday"] as? Date
+        gender = dictionary["gender"] as? String
+        birthday = dictionary["birthday"] as? String
+    }
+    
+    func toDictionary() -> [String: Any] {
+        return [
+            "username": self.username ?? "",
+            "name": self.name ?? "",
+            "email": self.email ?? "",
+            "phone_number": self.phoneNumber ?? "",
+            "picture": self.picture ?? "",
+            "gender": self.gender ?? "none",
+            "birthday": self.birthday ?? ""
+        ]
     }
 }

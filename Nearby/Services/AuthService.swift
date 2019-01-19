@@ -67,48 +67,55 @@ class AuthService {
     }
     
     public func handleAuthentification(viewController: UIViewController, route: ApiRouter) {
-        APIClient().request(route).then { response in
+        APIClient().request(route: route).then { response in
             print(response)
             
             guard let token = response["token"] as! String? else { return }
             self.authToken = token
             
             guard let userData = response["user"] as? [String: Any] else { return }
-            UserDataService.instance.userData = userData
+            UserDataService.instance.userData = User(dictionary: userData).toDictionary()
             
-            //self.redirectAfterAuthentification(viewController: viewController, user: User(dictionary: userData))
-            //let vc = InitController()
-            //vc.modalTransitionStyle = .crossDissolve
-            //viewController.present(vc, animated: true, completion: nil)
-            viewController.modalTransitionStyle = .crossDissolve
-            viewController.dismiss(animated: true, completion: nil)
+            self.redirectAfterAuthentification(vc: viewController, user: User(dictionary: userData))
         }
     }
     
-    public func redirectAfterAuthentification(viewController: UIViewController, user: User) {
-        print("Name :", user.name)
-        print("Username :", user.username)
-        print("Birthday :", user.birthday)
-        
+    fileprivate func presentSignupController(sourceVc: UIViewController, destVc: SignupController, user: User) {
+        destVc.user = user
+        destVc.modalTransitionStyle = .crossDissolve
+        sourceVc.present(destVc, animated: true, completion: nil)
+    }
+    
+    public func redirectAfterAuthentification(vc: UIViewController, user: User) {
         if user.name == nil || user.name == "" {
-            let vc = SignupNameController()
-            vc.user = user
-            vc.modalTransitionStyle = .crossDissolve
-            viewController.present(vc, animated: true, completion: nil)
+            presentSignupController(sourceVc: vc, destVc: SignupNameController(), user: user)
         } else if user.username == nil || user.username == "" {
-            let vc = SignupUsernameController()
-            vc.user = user
-            vc.modalTransitionStyle = .crossDissolve
-            viewController.present(vc, animated: true, completion: nil)
-        } else if user.birthday == nil {
-            let vc = SignupBirthdayController()
-            vc.user = user
-            vc.modalTransitionStyle = .crossDissolve
-            viewController.present(vc, animated: true, completion: nil)
+            presentSignupController(sourceVc: vc, destVc: SignupUsernameController(), user: user)
+        } else if user.birthday == nil || user.birthday == "" {
+            presentSignupController(sourceVc: vc, destVc: SignupBirthdayController(), user: user)
         } else {
-            let vc = BaseTabBarController()
-            vc.modalTransitionStyle = .flipHorizontal
-            viewController.present(vc, animated: true, completion: nil)
+            let newUserData = user.toDictionary()
+            let currentUserData = UserDataService.instance.userData
+            let isUsersEqual = NSDictionary(dictionary: currentUserData).isEqual(to: newUserData)
+            
+            if !isUsersEqual {
+                print("User updated :", newUserData)
+                updateUser(user: newUserData)
+            }
+            
+            let connectesVc = BaseTabBarController()
+            connectesVc.modalTransitionStyle = .crossDissolve
+            vc.present(connectesVc, animated: true, completion: nil)
+        }
+    }
+    
+    fileprivate func updateUser(user: [String: Any]) {
+        let route: ApiRouter = .updateUser(user: user)
+        
+        APIClient().request(route: route).then { response in
+            guard let userData = response["user"] as? [String: Any] else { return }
+            print(userData)
+            UserDataService.instance.userData = User(dictionary: userData).toDictionary()
         }
     }
     

@@ -128,7 +128,7 @@ class SignupBirthdayController: SignupController {
         guard let month = Int(monthTextField.text ?? "0") else { return }
         guard let year = Int(yearTextField.text ?? "0") else { return }
         
-        user.birthday = from(year: year, month: month, day: day)
+        user.birthday = "\(month)/\(day)/\(year)"
         
         goToNext()
     }

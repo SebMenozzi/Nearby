@@ -21,6 +21,9 @@ class InitController : UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //UserDataService.instance.userData = [:]
+        //AuthService.instance.authToken = ""
+        
         view.setGradientBackground(
             startColor: UIColor(r: 67, g: 34, b: 245),
             endColor: UIColor(r: 238, g: 54, b: 166),
@@ -36,6 +39,7 @@ class InitController : UIViewController {
     }
     
     func checkIfUserIsLoggedIn() {
+        
         if !AuthService.instance.isLoggedIn {
             AuthService.instance.logout()
             
@@ -44,7 +48,7 @@ class InitController : UIViewController {
             present(loginController, animated: true, completion: nil)
         } else {
             let userData = UserDataService.instance.userData
-            AuthService.instance.redirectAfterAuthentification(viewController: self, user: User(dictionary: userData))
+            AuthService.instance.redirectAfterAuthentification(vc: self, user: User(dictionary: userData))
         }
     }
     
