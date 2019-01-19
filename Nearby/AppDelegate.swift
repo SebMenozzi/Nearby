@@ -24,7 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         window = UIWindow(frame: UIScreen.main.bounds)
         // Make this window visible
         window?.makeKeyAndVisible()
-        window?.rootViewController = BaseTabBarController()
+        window?.rootViewController = InitController()
         //window?.rootViewController = BaseSlidingController()
         //window?.rootViewController = SignupNameController()
         window?.makeCorner(withRadius: 5)

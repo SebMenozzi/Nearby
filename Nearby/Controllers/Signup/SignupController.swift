@@ -12,7 +12,7 @@ import AccountKit
 
 class SignupController: UIViewController {
     
-    var user = User()
+    var user = User(dictionary: [:])
     
     static func createTitleLabel(title: String) -> UILabel {
         let label = UILabel()
@@ -174,27 +174,7 @@ class SignupController: UIViewController {
     }
     
     func goToNext() {
-        if user.name == nil {
-            let vc = SignupNameController()
-            vc.user = user
-            vc.modalTransitionStyle = .crossDissolve
-            self.present(vc, animated: true, completion: nil)
-        } else if user.username == nil {
-            let vc = SignupUsernameController()
-            vc.user = user
-            vc.modalTransitionStyle = .crossDissolve
-            self.present(vc, animated: true, completion: nil)
-        } else if user.birthday == nil {
-            let vc = SignupBirthdayController()
-            vc.user = user
-            vc.modalTransitionStyle = .crossDissolve
-            self.present(vc, animated: true, completion: nil)
-        } else {
-            let vc = BaseTabBarController()
-            vc.modalTransitionStyle = .flipHorizontal
-            
-            self.present(vc, animated: true, completion: nil)
-        }
+        AuthService.instance.redirectAfterAuthentification(viewController: self, user: user)
     }
     
     func next() {

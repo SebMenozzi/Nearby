@@ -12,20 +12,23 @@ extension HomeController {
     func setupData() {
         
         // Users
-        let seb = User()
-        seb.picture = "seb"
-        seb.name = "Seb 🔥"
-        seb.username = "seb"
+        let seb = User(dictionary: [
+            "username": "seb",
+            "name": "Seb 🔥",
+            "picture": "seb"
+        ])
         
-        let cesar = User()
-        cesar.picture = "cesar"
-        cesar.name = "MattGorko 🕺"
-        cesar.username = "cesar"
+        let cesar = User(dictionary: [
+            "username": "cesar",
+            "name": "MattGorko 🕺",
+            "picture": "cesar"
+        ])
         
-        let steve = User()
-        steve.picture = "steve"
-        steve.name = "Steve Jobs"
-        steve.username = "steve"
+        let steve = User(dictionary: [
+            "username": "steve",
+            "name": "Steve Jobs",
+            "picture": "steve"
+        ])
         
         // France
         

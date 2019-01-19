@@ -25,8 +25,6 @@ class HomeController : UICollectionViewController, UIGestureRecognizerDelegate {
         
         setupNavigationItems()
         
-        checkIfUserIsLoggedIn()
-        
         setupData()
     }
     
@@ -45,20 +43,8 @@ class HomeController : UICollectionViewController, UIGestureRecognizerDelegate {
         present(navController, animated: true, completion: nil)
     }
     
-    @objc func handlePlay() {
-        let newPollGameController = PollGameController()
-        let navController = UINavigationController(rootViewController: newPollGameController)
-        present(navController, animated: true, completion: nil)
-    }
-    
     @objc func handleOpen() {
         (UIApplication.shared.keyWindow?.rootViewController as? BaseSlidingController)?.openMenu()
-    }
-    
-    func checkIfUserIsLoggedIn() {
-        if !AuthService.instance.isLoggedIn {
-            handleLogout(withoutAnimation: true)
-        }
     }
     
     @objc func handleLogout(withoutAnimation: Bool = false) {

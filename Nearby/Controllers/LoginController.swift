@@ -189,8 +189,6 @@ extension LoginController: AKFViewControllerDelegate {
         
         let route: ApiRouter = .loginWithAccountKit(access_token: accessToken.tokenString)
         
-        AuthService.instance.handleAuthentification(route).then { response in
-            self.dismiss(animated: true, completion: nil)
-        }
+        AuthService.instance.handleAuthentification(viewController: self, route: route)
     }
 }

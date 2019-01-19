@@ -45,33 +45,13 @@ class AuthService {
     private let fbSDKManager: FBSDKLoginManager = FBSDKLoginManager()
     private let accountKitManager: AKFAccountKit! = AKFAccountKit(responseType: .accessToken)
     
-    // request the token via the Api and save it
-    public func handleAuthentification(_ route: ApiRouter) -> Promise<JSON> {
-        return APIClient().request(route).then { response in
-            if let token = response["token"] as! String? {
-                self.authToken = token
-                print(token)
-            }
-            
-            if let user = response["user"] as! String? {
-                print(user)
-            }
-            
-            self.isLoading = false
-        }
-    }
-    
     public func loginWithFacebook(viewController: LoginController) {
-        self.isLoading = true
-        
         fbSDKManager.logIn(withReadPermissions: ["public_profile", "email", "user_birthday", "user_gender"], from: viewController) {
             (result, error) in
             if error != nil {
                 print("Error Facebook Login")
-                self.isLoading = false
             } else if (result?.isCancelled)! {
                 print("Cancelled Facebook Login")
-                self.isLoading = false
             } else {
                 print("Successfully connected to Facebook")
                 
@@ -79,18 +59,60 @@ class AuthService {
                     if FBSDKAccessToken.current() != nil, let accessToken = FBSDKAccessToken.current().tokenString {
                         let route: ApiRouter = .loginWithFacebook(access_token: accessToken)
                         
-                        self.handleAuthentification(route).then { response in
-                            viewController.dismiss(animated: true, completion: nil)
-                        }
+                        self.handleAuthentification(viewController: viewController, route: route)
                     }
                 }
             }
         }
     }
     
-    public func loginWithAccountKit(viewController: LoginController) {
-        self.isLoading = true
+    public func handleAuthentification(viewController: UIViewController, route: ApiRouter) {
+        APIClient().request(route).then { response in
+            print(response)
+            
+            guard let token = response["token"] as! String? else { return }
+            self.authToken = token
+            
+            guard let userData = response["user"] as? [String: Any] else { return }
+            UserDataService.instance.userData = userData
+            
+            //self.redirectAfterAuthentification(viewController: viewController, user: User(dictionary: userData))
+            //let vc = InitController()
+            //vc.modalTransitionStyle = .crossDissolve
+            //viewController.present(vc, animated: true, completion: nil)
+            viewController.modalTransitionStyle = .crossDissolve
+            viewController.dismiss(animated: true, completion: nil)
+        }
+    }
+    
+    public func redirectAfterAuthentification(viewController: UIViewController, user: User) {
+        print("Name :", user.name)
+        print("Username :", user.username)
+        print("Birthday :", user.birthday)
         
+        if user.name == nil || user.name == "" {
+            let vc = SignupNameController()
+            vc.user = user
+            vc.modalTransitionStyle = .crossDissolve
+            viewController.present(vc, animated: true, completion: nil)
+        } else if user.username == nil || user.username == "" {
+            let vc = SignupUsernameController()
+            vc.user = user
+            vc.modalTransitionStyle = .crossDissolve
+            viewController.present(vc, animated: true, completion: nil)
+        } else if user.birthday == nil {
+            let vc = SignupBirthdayController()
+            vc.user = user
+            vc.modalTransitionStyle = .crossDissolve
+            viewController.present(vc, animated: true, completion: nil)
+        } else {
+            let vc = BaseTabBarController()
+            vc.modalTransitionStyle = .flipHorizontal
+            viewController.present(vc, animated: true, completion: nil)
+        }
+    }
+    
+    public func loginWithAccountKit(viewController: LoginController) {
         let inputState = UUID().uuidString
         
         let vc = accountKitManager.viewControllerForPhoneLogin(with: nil, state: inputState) as AKFViewController

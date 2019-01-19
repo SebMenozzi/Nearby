@@ -12,7 +12,7 @@ import Hydra
 typealias JSON = [String: Any]
 
 public enum ServerURL: String {
-    case base = "https://akasi.ovh/api"
+    case base = "https://akasi.ovh"
 }
 
 class APIClient {
@@ -41,6 +41,7 @@ class APIClient {
                         }
                         resolve(json)
                     case .failure(let error):
+                        print(error)
                         reject(error)
                 }
             }

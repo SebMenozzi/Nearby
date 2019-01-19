@@ -24,7 +24,7 @@ class User : NSObject {
     var gender: Gender?
     var birthday: Date?
     
-    func create(dictionary: [String: Any]?) {
+    init(dictionary: [String: Any]?) {
         guard let dictionary = dictionary else { return }
         public_id = dictionary["public_id"] as? String
         username = dictionary["username"] as? String
@@ -32,7 +32,7 @@ class User : NSObject {
         email = dictionary["email"] as? String
         phoneNumber = dictionary["phoneNumber"] as? String
         picture = dictionary["picture"] as? String
-        gender = dictionary["gender"] as? Gender
+        gender = Gender(rawValue: dictionary["gender"] as? String ?? "none")
         birthday = dictionary["birthday"] as? Date
     }
 }
