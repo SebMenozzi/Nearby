@@ -63,7 +63,7 @@ extension HomeController {
         france_post2.user = cesar
         france_post2.text = "J'aime les grosses bites de noirs 🍆"
         france_post2.mediaType = MediaType.photo
-        france_post2.media = "https://sossafetymagazine.com/wp-content/uploads/A-Snapchat-Guide-for-Parents-snap-example.jpg"
+        france_post2.media = "https://scontent-cdg2-1.xx.fbcdn.net/v/t1.0-9/50407325_10157371386944880_6421135218878447616_n.png?_nc_cat=1&_nc_ht=scontent-cdg2-1.xx&oh=4c5164a609213ff639250cb49657bb7b&oe=5CCFCB7D"
         france_post2.commentsCount = 3
         france_post2.comments = []
         

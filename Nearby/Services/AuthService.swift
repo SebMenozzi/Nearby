@@ -29,6 +29,7 @@ class AuthService {
     }
     
     var isLoggedIn : Bool {
+        /*
         get {
             do {
                 let jwt: JSONWebToken = try JSONWebToken(string : self.authToken)
@@ -40,6 +41,8 @@ class AuthService {
                 return false
             }
         }
+        */
+        return true
     }
     
     private let fbSDKManager: FBSDKLoginManager = FBSDKLoginManager()
@@ -96,9 +99,9 @@ class AuthService {
         } else {
             let newUserData = user.toDictionary()
             let currentUserData = UserDataService.instance.userData
-            let isUsersEqual = NSDictionary(dictionary: currentUserData).isEqual(to: newUserData)
+            let areUsersEqual = NSDictionary(dictionary: currentUserData).isEqual(to: newUserData)
             
-            if !isUsersEqual {
+            if !areUsersEqual {
                 print("User updated :", newUserData)
                 updateUser(user: newUserData)
             }

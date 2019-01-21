@@ -10,9 +10,10 @@ import UIKit
 
 class ProfileController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
-    fileprivate let cellId = "cellId"
-    fileprivate let headerId = "headerId"
-    fileprivate let padding: CGFloat = 16
+    private let cellId = "cellId"
+    private let headerId = "headerId"
+    private let padding: CGFloat = 16
+    var headerView: ProfileHeader?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,13 +33,13 @@ class ProfileController: UICollectionViewController, UICollectionViewDelegateFlo
         return .lightContent
     }
     
-    fileprivate func setupCollectionViewLayout() {
+    private func setupCollectionViewLayout() {
         if let layout = collectionViewLayout as? UICollectionViewFlowLayout {
             layout.sectionInset = .init(top: padding, left: padding, bottom: padding, right: padding)
         }
     }
     
-    fileprivate func setupCollectionView() {
+    private func setupCollectionView() {
         collectionView.backgroundColor = .white
         collectionView.contentInsetAdjustmentBehavior = .never
         collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: cellId)
@@ -49,14 +50,12 @@ class ProfileController: UICollectionViewController, UICollectionViewDelegateFlo
         let contentOffsetY = scrollView.contentOffset.y
         
         if contentOffsetY > 0 {
-            //headerView?.animator.fractionComplete = 0
+            headerView?.animator.fractionComplete = 0
             return
         }
         
-        //headerView?.animator.fractionComplete = abs(contentOffsetY) / 100
+        headerView?.animator.fractionComplete = abs(contentOffsetY) / 1000
     }
-    
-    var headerView: ProfileHeader?
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerId, for: indexPath) as? ProfileHeader
@@ -73,6 +72,7 @@ class ProfileController: UICollectionViewController, UICollectionViewDelegateFlo
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
+        cell.layer.cornerRadius = 10.0
         cell.backgroundColor = .black
         return cell
     }
