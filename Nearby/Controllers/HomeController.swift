@@ -18,15 +18,7 @@ class HomeController : UICollectionViewController, UIGestureRecognizerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = UIColor(r: 109, g: 80, b: 240)
-        
-        let layerGradient = CAGradientLayer()
-        layerGradient.colors = [UIColor(white: 0, alpha: 0).cgColor, UIColor(white: 0, alpha: 0.6).cgColor]
-        layerGradient.startPoint = CGPoint(x: 0, y: 0.8)
-        layerGradient.endPoint = CGPoint(x: 0, y: 1)
-        layerGradient.frame = view.frame
-        //layerGradient.shouldRasterize = true
-        view?.layer.addSublayer(layerGradient)
+        setupBackground()
         
         collectionView?.backgroundColor = UIColor(white: 0, alpha: 0.8)
         collectionView?.alwaysBounceVertical = true
@@ -36,6 +28,18 @@ class HomeController : UICollectionViewController, UIGestureRecognizerDelegate {
         setupNavigationItems()
         
         setupData()
+    }
+    
+    private func setupBackground() {
+        view.backgroundColor = UIColor(r: 109, g: 80, b: 240)
+    
+        let layerGradient = CAGradientLayer()
+        layerGradient.colors = [UIColor(white: 0, alpha: 0).cgColor, UIColor(white: 0, alpha: 0.6).cgColor]
+        layerGradient.startPoint = CGPoint(x: 0, y: 0.8)
+        layerGradient.endPoint = CGPoint(x: 0, y: 1)
+        layerGradient.frame = view.frame
+        //layerGradient.shouldRasterize = true
+        view?.layer.addSublayer(layerGradient)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -232,13 +236,9 @@ class FeedCell: BaseCell {
         addConstraintsWithFormat(format: "V:|-12-[v0]", views: detailsLabel)
         
         // 8 + 50 + 4 + ? + 4 + (200?) + 8 + 30 + 8 + 1
-        addConstraintsWithFormat(format: "V:|-8-[v0(56)]|", views: emojiContainerView)
+        addConstraintsWithFormat(format: "V:[v0(56)]", views: emojiContainerView)
         
         emojiContainerView.addConstraintsWithFormat(format: "H:|[v0]|", views: emojiLabel)
         emojiContainerView.addConstraintsWithFormat(format: "V:|[v0]|", views: emojiLabel)
-        
-        // centering vertically the views
-        //emojiLabel.centerXAnchor.constraint(equalTo: emojiContainerView.centerXAnchor).isActive = true
-        //emojiLabel.centerYAnchor.constraint(equalTo: emojiContainerView.centerYAnchor).isActive = true
     }
 }

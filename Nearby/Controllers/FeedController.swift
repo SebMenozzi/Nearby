@@ -12,6 +12,7 @@ import UIKit
 class FeedController: UICollectionViewController {
     
     private let cellId = "cellId"
+    private let padding: CGFloat = 10
     
     let blackBackgroundView = UIView()
     let zoomImageView = UIImageView()
@@ -28,9 +29,11 @@ class FeedController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupBackground()
+        
+        collectionView?.backgroundColor = UIColor(white: 0, alpha: 0.8)
         collectionView?.contentInset = UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0)
         collectionView?.alwaysBounceVertical = true // enable vertical scroll
-        collectionView?.backgroundColor = UIColor.white
         
         collectionView?.register(PostCell.self, forCellWithReuseIdentifier: cellId)
         
@@ -38,6 +41,18 @@ class FeedController: UICollectionViewController {
         
         // lock the slide menu
         isMenuLocked(locked: true)
+    }
+    
+    private func setupBackground() {
+        view.backgroundColor = UIColor(r: 109, g: 80, b: 240)
+        
+        let layerGradient = CAGradientLayer()
+        layerGradient.colors = [UIColor(white: 0, alpha: 0).cgColor, UIColor(white: 0, alpha: 0.6).cgColor]
+        layerGradient.startPoint = CGPoint(x: 0, y: 0.8)
+        layerGradient.endPoint = CGPoint(x: 0, y: 1)
+        layerGradient.frame = view.frame
+        //layerGradient.shouldRasterize = true
+        view?.layer.addSublayer(layerGradient)
     }
     
     deinit {
@@ -164,6 +179,7 @@ class FeedController: UICollectionViewController {
 
 
 extension FeedController : UICollectionViewDelegateFlowLayout {
+    
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if let count = feed?.posts?.count {
             return count
@@ -193,11 +209,11 @@ extension FeedController : UICollectionViewDelegateFlowLayout {
             height += 200 + 4
         }
         
-        return CGSize.init(width: view.frame.width, height: height + 16)
+        return CGSize.init(width: view.frame.width - 2 * padding, height: height + 16)
     }
     
     private func estimateFrameForText(text: String) -> CGRect {
-        let size = CGSize(width: view.frame.width, height: 1000)
+        let size = CGSize(width: view.frame.width - 2 * padding, height: 1000)
         let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
         let attributes = [ NSAttributedString.Key.font: UIFont(name: "GothamRounded-Book", size: 18)! ]
         return NSString(string: text).boundingRect(
@@ -217,6 +233,7 @@ extension FeedController : UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 0
+        return 8
     }
+    
 }

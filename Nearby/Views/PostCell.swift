@@ -132,6 +132,9 @@ class PostCell: BaseCell {
     }
     
     override func setupViews() {
+        self.makeCorner(withRadius: 10)
+        self.backgroundColor = .white
+        
         addSubview(profileImageView)
         addSubview(detailsLabel)
         addSubview(menuImageView)
