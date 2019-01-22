@@ -23,19 +23,19 @@ class BaseTabBarController: UITabBarController {
     
     private func setupNavigationBarDesign() {
         let navigation = UINavigationBar.appearance()
-        let navigationFont = UIFont(name: "GothamRounded-Medium", size: 22)
+        let navigationFont = UIFont(name: "GothamRounded-Medium", size: 18)
         let navigationLargeFont = UIFont(name: "GothamRounded-Bold", size: 34)
         let barButtonItemFont = UIFont(name: "GothamRounded-Medium", size: 18)
         
         navigation.titleTextAttributes = [
-            NSAttributedString.Key.foregroundColor: UIColor.black,
+            NSAttributedString.Key.foregroundColor: UIColor.white,
             NSAttributedString.Key.font: navigationFont!
         ]
         
         if #available(iOS 11.0, *) {
-            self.navigationController?.navigationBar.prefersLargeTitles = true
+            navigationController?.navigationBar.prefersLargeTitles = true
             navigation.largeTitleTextAttributes = [
-                NSAttributedString.Key.foregroundColor: UIColor.black,
+                NSAttributedString.Key.foregroundColor: UIColor.white,
                 NSAttributedString.Key.font: navigationLargeFont!
             ]
         }
@@ -43,19 +43,23 @@ class BaseTabBarController: UITabBarController {
         UIBarButtonItem.appearance().setTitleTextAttributes([
             NSAttributedString.Key.foregroundColor : UIColor(r: 0, g: 114, b: 255),
             NSAttributedString.Key.font : barButtonItemFont!
-            ], for: .normal)
+        ], for: .normal)
     }
     
     private func setupBottomTabBarDesign() {
         tabBar.layer.cornerRadius = 5
         tabBar.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
         
-        tabBar.isTranslucent = false
-        tabBar.unselectedItemTintColor = UIColor(r: 201, g: 205, b: 209)
+        tabBar.isTranslucent = true
+        //tabBar.unselectedItemTintColor = UIColor(r: 201, g: 205, b: 209)
+        tabBar.tintColor = .white
+        tabBar.unselectedItemTintColor = UIColor(white: 1, alpha: 0.5)
+        tabBar.backgroundImage = UIImage()
         
         let topBorder = CALayer()
         topBorder.frame = CGRect(x: 0, y: 0, width: 1000, height: 0.5)
-        topBorder.backgroundColor = UIColor(white: 0.5, alpha: 0.1).cgColor
+        //topBorder.backgroundColor = UIColor(white: 0.5, alpha: 0.1).cgColor
+        topBorder.backgroundColor = UIColor.clear.cgColor
         
         tabBar.layer.addSublayer(topBorder)
         
@@ -69,11 +73,10 @@ class BaseTabBarController: UITabBarController {
         navController.tabBarItem.title = title
         navController.tabBarItem.image = UIImage(named: imageName)
         navController.tabBarItem.selectedImage = UIImage(named: selectedImageName)
-        navController.navigationBar.prefersLargeTitles = true
         // navigation bar
         navController.navigationBar.setValue(true, forKey: "hidesShadow")
-        //navController.navigationBar.setBackgroundImage(UIImage(), for: UIBarPosition.any, barMetrics: UIBarMetrics.default)
-        //navController.navigationBar.shadowImage = UIImage()
+        navController.navigationBar.setBackgroundImage(UIImage(), for: UIBarPosition.any, barMetrics: UIBarMetrics.default)
+        navController.navigationBar.shadowImage = UIImage()
         return navController
     }
     
@@ -84,10 +87,10 @@ class BaseTabBarController: UITabBarController {
         let profileController = ProfileController(collectionViewLayout: ProfileHeaderLayout())
         
         viewControllers = [
-            createNavController(viewController: homeController, title: "Home", imageName: "home", selectedImageName: "home_filled"),
-            createNavController(viewController: directRoomsController, title: "Friends", imageName: "friends", selectedImageName: "friends_filled"),
-            createNavController(viewController: searchController, title: "Search", imageName: "search", selectedImageName: "search_filled"),
-            createNavController(viewController: profileController, title: "Profile", imageName: "profile", selectedImageName: "profile_filled")
+            createNavController(viewController: homeController, title: "Home", imageName: "home", selectedImageName: "home"),
+            createNavController(viewController: directRoomsController, title: "Friends", imageName: "friends", selectedImageName: "friends"),
+            createNavController(viewController: searchController, title: "Search", imageName: "search", selectedImageName: "search"),
+            createNavController(viewController: profileController, title: "Profile", imageName: "profile", selectedImageName: "profile")
         ]
     }
     
@@ -108,8 +111,8 @@ class BaseTabBarController: UITabBarController {
     
     private var bounceAnimation: CAKeyframeAnimation = {
         let bounceAnimation = CAKeyframeAnimation(keyPath: "transform.scale")
-        bounceAnimation.values = [1.0, 1.1, 0.8, 1.2, 1.0]
-        bounceAnimation.duration = TimeInterval(0.3)
+        bounceAnimation.values = [1.0, 0.9, 1.0]
+        bounceAnimation.duration = TimeInterval(0.2)
         bounceAnimation.calculationMode = CAAnimationCalculationMode.cubic
         return bounceAnimation
     }()

@@ -18,7 +18,17 @@ class HomeController : UICollectionViewController, UIGestureRecognizerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        collectionView?.backgroundColor = UIColor.white
+        view.backgroundColor = UIColor(r: 109, g: 80, b: 240)
+        
+        let layerGradient = CAGradientLayer()
+        layerGradient.colors = [UIColor(white: 0, alpha: 0).cgColor, UIColor(white: 0, alpha: 0.6).cgColor]
+        layerGradient.startPoint = CGPoint(x: 0, y: 0.8)
+        layerGradient.endPoint = CGPoint(x: 0, y: 1)
+        layerGradient.frame = view.frame
+        //layerGradient.shouldRasterize = true
+        view?.layer.addSublayer(layerGradient)
+        
+        collectionView?.backgroundColor = UIColor(white: 0, alpha: 0.8)
         collectionView?.alwaysBounceVertical = true
         collectionView.register(FeedCell.self, forCellWithReuseIdentifier: cellId)
         //collectionView?.register(HomeHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerId)
@@ -28,11 +38,46 @@ class HomeController : UICollectionViewController, UIGestureRecognizerDelegate {
         setupData()
     }
     
-    private func setupNavigationItems() {
-        navigationItem.title = "Home"
+    override func viewWillAppear(_ animated: Bool) {
+        setupNavigationController()
+    }
+    
+    private func setupNavigationController() {
+        navigationController?.navigationBar.barTintColor = .clear
+        navigationController?.navigationBar.isTranslucent = true
+    }
+    
+    private func setupNavigationItems() {        
+        let button = UIButton(type: .system)
+        button.backgroundColor = UIColor(white: 0, alpha: 0.3)
+        button.makeCorner(withRadius: 20)
+        button.translatesAutoresizingMaskIntoConstraints = true
         
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "menu"), style: .plain, target: self, action: #selector(handleOpen))
-        navigationItem.leftBarButtonItem?.tintColor = UIColor.black
+        button.widthAnchor.constraint(equalToConstant: 110.0).isActive = true
+        button.heightAnchor.constraint(equalToConstant: 40.0).isActive = true
+        
+        let attributedTitle = NSMutableAttributedString(string: "💎 ", attributes: [
+            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 25)
+        ])
+        
+        attributedTitle.append(NSAttributedString(string: "3,678", attributes: [
+            NSAttributedString.Key.font: UIFont(name: "GothamRounded-Book", size: 18)!,
+            NSAttributedString.Key.foregroundColor: UIColor.white,
+            NSAttributedString.Key.baselineOffset: 2
+        ]))
+        
+        button.setAttributedTitle(attributedTitle, for: .normal)
+        button.titleLabel?.numberOfLines = 1
+        
+        //button.setImage(UIImage(named: "menu"), for: .normal)
+        
+        button.sizeToFit()
+        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: button)
+        navigationItem.leftBarButtonItem?.tintColor = UIColor.white
+        
+        //navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "menu"), style: .plain, target: self, action: #selector(handleOpen))
+        //navigationItem.leftBarButtonItem?.tintColor = UIColor.white
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(handleLogout))
     }
@@ -51,6 +96,10 @@ class HomeController : UICollectionViewController, UIGestureRecognizerDelegate {
         AuthService.instance.logout()
         
         self.present(LoginController(), animated: !withoutAnimation, completion: nil)
+    }
+    
+    override var preferredStatusBarStyle : UIStatusBarStyle {
+        return .lightContent
     }
 }
 
@@ -85,7 +134,7 @@ extension HomeController : UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 0
+        return 6
     }
     
     /*
@@ -115,8 +164,25 @@ class FeedCell: BaseCell {
     
     var feed: Feed? {
         didSet {
-            nameLabel.text = feed?.name
+            /* set details label attributes */
+            let attributedText = NSMutableAttributedString(string: "\(feed?.name ?? "Unknown")\n", attributes: [
+                NSAttributedString.Key.font: UIFont(name: "GothamRounded-Book", size: 18)!,
+                NSAttributedString.Key.foregroundColor: UIColor.white
+            ])
             
+            attributedText.append(NSAttributedString(string: "\(feed?.identifier ?? "#unknown")", attributes: [
+                NSAttributedString.Key.font: UIFont(name: "GothamRounded-Book", size: 14)!,
+                NSAttributedString.Key.foregroundColor: UIColor(white: 1, alpha: 0.8)
+            ]))
+            
+            let paragraphStyle = NSMutableParagraphStyle()
+            paragraphStyle.lineSpacing = 4
+            
+            attributedText.addAttribute(.paragraphStyle, value: paragraphStyle, range: NSMakeRange(0, attributedText.length))
+            
+            detailsLabel.attributedText = attributedText
+            
+            /*
             if (feed?.type == FeedType.public_feed) {
                 signImageView.image = UIImage(named: "hashtag")!.withRenderingMode(.alwaysTemplate)
             }
@@ -126,67 +192,53 @@ class FeedCell: BaseCell {
             else if (feed?.type == FeedType.personal_feed) {
                 signImageView.image = UIImage(named: "at")!.withRenderingMode(.alwaysTemplate)
             }
+            */
             
-            connectedLabel.text = feed?.numberConnected?.description
+            emojiLabel.text = feed?.emoji
+            
+            if let color = feed?.color {
+                emojiContainerView.backgroundColor = color
+            }
         }
     }
     
-    let signImageView : UIImageView = {
-        let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFit
-        imageView.image = UIImage(named: "hashtag")!.withRenderingMode(.alwaysTemplate)
-        imageView.tintColor = UIColor.init(r: 220, g: 220, b: 220)
-        return imageView
-    }()
-    
-    let nameLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Unknown"
-        label.font = UIFont(name: "GothamRounded-Medium", size: 18)
-        return label
-    }()
-    
-    let connectedLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = UIColor(r: 24, g: 218, b: 59)
-        label.font = UIFont(name: "GothamRounded-Medium", size: 12)
-        label.text = "102"
-        return label
-    }()
-    
-    let connectedSign: UIView = {
+    private let emojiContainerView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(r: 24, g: 218, b: 59)
-        view.makeCorner(withRadius: 4)
+        view.backgroundColor = FeedColor.violet
+        view.makeCorner(withRadius: 28)
         return view
     }()
     
-    let dividerLineView: UIView = {
-        let view = UIView()
-        view.backgroundColor = UIColor(white: 0.5, alpha: 0.05)
-        return view
+    private let emojiLabel: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .center
+        label.font = UIFont.systemFont(ofSize: 30)
+        return label
+    }()
+    
+    private let detailsLabel: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 2
+        return label
     }()
     
     override func setupViews() {
-        addSubview(signImageView)
-        addSubview(nameLabel)
-        addSubview(connectedLabel)
-        addSubview(connectedSign)
-        addSubview(dividerLineView)
+        addSubview(emojiContainerView)
+        emojiContainerView.addSubview(emojiLabel)
+        addSubview(detailsLabel)
         
-        addConstraintsWithFormat(format: "H:|-20-[v0]-20-|", views: dividerLineView)
-        addConstraintsWithFormat(format: "V:[v0(1)]|", views: dividerLineView)
+        addConstraintsWithFormat(format: "H:|-18-[v0(56)]-12-[v1]|", views: emojiContainerView, detailsLabel)
         
-        addConstraintsWithFormat(format: "H:|-20-[v0(20)]-20-[v1]-[v2]-5-[v3(8)]-30-|", views: signImageView, nameLabel, connectedLabel, connectedSign)
-        addConstraintsWithFormat(format: "V:[v0(20)]", views: signImageView)
-        addConstraintsWithFormat(format: "V:[v0]", views: nameLabel)
-        addConstraintsWithFormat(format: "V:[v0]", views: connectedLabel)
-        addConstraintsWithFormat(format: "V:[v0(8)]", views: connectedSign)
+        addConstraintsWithFormat(format: "V:|-12-[v0]", views: detailsLabel)
+        
+        // 8 + 50 + 4 + ? + 4 + (200?) + 8 + 30 + 8 + 1
+        addConstraintsWithFormat(format: "V:|-8-[v0(56)]|", views: emojiContainerView)
+        
+        emojiContainerView.addConstraintsWithFormat(format: "H:|[v0]|", views: emojiLabel)
+        emojiContainerView.addConstraintsWithFormat(format: "V:|[v0]|", views: emojiLabel)
         
         // centering vertically the views
-        signImageView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-        nameLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-        connectedLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-        connectedSign.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+        //emojiLabel.centerXAnchor.constraint(equalTo: emojiContainerView.centerXAnchor).isActive = true
+        //emojiLabel.centerYAnchor.constraint(equalTo: emojiContainerView.centerYAnchor).isActive = true
     }
 }

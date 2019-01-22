@@ -17,11 +17,6 @@ class FeedController: UICollectionViewController {
     let zoomImageView = UIImageView()
     var startingFrame : CGRect?
     
-    deinit {
-        // unlock the slide menu
-        isMenuLocked(locked: false)
-    }
-    
     var statusImageView: UIImageView?
     
     var feed: Feed? {
@@ -43,6 +38,20 @@ class FeedController: UICollectionViewController {
         
         // lock the slide menu
         isMenuLocked(locked: true)
+    }
+    
+    deinit {
+        // unlock the slide menu
+        isMenuLocked(locked: false)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        setupNavigationController()
+    }
+    
+    private func setupNavigationController() {
+        navigationController?.navigationBar.barTintColor = feed?.color ?? FeedColor.violet
+        navigationController?.navigationBar.isTranslucent = false
     }
     
     func animateImageView(statusImageView: UIImageView) {
@@ -146,6 +155,10 @@ class FeedController: UICollectionViewController {
     
     private func isMenuLocked(locked: Bool) {
         (UIApplication.shared.keyWindow?.rootViewController as? BaseSlidingController)?.isMenuLocked = locked
+    }
+    
+    override var preferredStatusBarStyle : UIStatusBarStyle {
+        return .lightContent
     }
 }
 

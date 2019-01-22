@@ -43,7 +43,6 @@ class ProfileHeader: UICollectionReusableView {
         label.font = UIFont(name: "GothamRounded-Medium", size: 17)
         label.text = "258783"
         label.textAlignment = .left
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -54,7 +53,6 @@ class ProfileHeader: UICollectionReusableView {
         label.font = UIFont(name: "GothamRounded-Book", size: 13)
         label.text = "followers"
         label.textAlignment = .left
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -67,7 +65,6 @@ class ProfileHeader: UICollectionReusableView {
         label.font = UIFont(name: "GothamRounded-Medium", size: 17)
         label.text = "854"
         label.textAlignment = .left
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -78,7 +75,6 @@ class ProfileHeader: UICollectionReusableView {
         label.font = UIFont(name: "GothamRounded-Book", size: 13)
         label.text = "followings"
         label.textAlignment = .left
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -108,11 +104,11 @@ class ProfileHeader: UICollectionReusableView {
     
     private func setupConstraints() {
         addConstraintsWithFormat(format: "H:|[v0]|", views: containerView)
-        addConstraintsWithFormat(format: "V:|-[v0(40)]|", views: containerView)
+        addConstraintsWithFormat(format: "V:[v0(40)]|", views: containerView)
         
         addConstraintsWithFormat(format: "H:|-10-[v0]-10-[v1]", views: followersContainer, followingsContainer)
-        addConstraintsWithFormat(format: "V:|-10-[v0(30)]-3-|", views: followersContainer)
-        addConstraintsWithFormat(format: "V:|-10-[v0(30)]-3-|", views: followingsContainer)
+        addConstraintsWithFormat(format: "V:|-10-[v0]-3-|", views: followersContainer)
+        addConstraintsWithFormat(format: "V:|-10-[v0]-3-|", views: followingsContainer)
         
         addConstraintsWithFormat(format: "H:|[v0]|", views: followersCount)
         addConstraintsWithFormat(format: "H:|[v0]|", views: followersLabel)

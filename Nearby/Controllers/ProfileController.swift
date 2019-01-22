@@ -28,11 +28,7 @@ class ProfileController: UICollectionViewController, UICollectionViewDelegateFlo
         super.viewWillAppear(animated)
         self.setNeedsStatusBarAppearanceUpdate()
     }
-    
-    override var preferredStatusBarStyle : UIStatusBarStyle {
-        return .lightContent
-    }
-    
+
     private func setupCollectionViewLayout() {
         if let layout = collectionViewLayout as? UICollectionViewFlowLayout {
             layout.sectionInset = .init(top: padding, left: padding, bottom: padding, right: padding)
@@ -79,5 +75,9 @@ class ProfileController: UICollectionViewController, UICollectionViewDelegateFlo
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return .init(width: view.frame.width - 2 * padding, height: 50)
+    }
+    
+    override var preferredStatusBarStyle : UIStatusBarStyle {
+        return .lightContent
     }
 }

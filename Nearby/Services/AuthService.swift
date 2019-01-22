@@ -97,13 +97,12 @@ class AuthService {
         } else if user.birthday == nil || user.birthday == "" {
             presentSignupController(sourceVc: vc, destVc: SignupBirthdayController(), user: user)
         } else {
-            let newUserData = user.toDictionary()
+            let signupUserData = user.toDictionary()
             let currentUserData = UserDataService.instance.userData
-            let areUsersEqual = NSDictionary(dictionary: currentUserData).isEqual(to: newUserData)
             
-            if !areUsersEqual {
-                print("User updated :", newUserData)
-                updateUser(user: newUserData)
+            if !NSDictionary(dictionary: currentUserData).isEqual(to: signupUserData) {
+                print("User signup :", signupUserData)
+                updateUser(user: signupUserData)
             }
             
             let connectesVc = BaseTabBarController()

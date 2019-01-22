@@ -34,7 +34,9 @@ extension HomeController {
         
         let france = Feed()
         france.identifier = "#france"
-        france.name = "France 🇫🇷"
+        france.name = "France 🇫🇷🍷"
+        france.emoji = "🇫🇷"
+        france.color = FeedColor.blue
         france.isLocationBased = false
         france.type = FeedType.public_feed
         france.numberConnected = 10203
@@ -81,6 +83,7 @@ extension HomeController {
         let fun = Feed()
         fun.identifier = "#fun"
         fun.name = "Fun 🎉"
+        fun.emoji = "🎉"
         fun.isLocationBased = false
         fun.type = FeedType.public_feed
         fun.numberConnected = 6456
@@ -88,27 +91,33 @@ extension HomeController {
         let food = Feed()
         food.identifier = "#food"
         food.name = "Food 🍎"
+        food.emoji = "🍎"
+        food.color = FeedColor.red
         food.isLocationBased = false
         food.type = FeedType.public_feed
         food.numberConnected = 3340
         
-        let seb_feed = Feed()
-        seb_feed.identifier = "#(seb)"
-        seb_feed.name = "Seb"
-        seb_feed.isLocationBased = false
-        seb_feed.type = FeedType.private_feed
-        seb_feed.numberConnected = 2789
+        let foot = Feed()
+        foot.identifier = "#football"
+        foot.name = "Football"
+        foot.emoji = "⚽️"
+        foot.color = FeedColor.azure
+        foot.isLocationBased = false
+        foot.type = FeedType.public_feed
+        foot.numberConnected = 2789
         
-        let dals = Feed()
-        dals.identifier = "#music"
-        dals.name = "Music 🎧"
-        dals.isLocationBased = false
-        dals.type = FeedType.public_feed
-        dals.numberConnected = 1492
+        let music = Feed()
+        music.identifier = "#music"
+        music.name = "Music 🎧"
+        music.emoji = "🎧"
+        music.isLocationBased = false
+        music.type = FeedType.public_feed
+        music.numberConnected = 1492
         
         let onpc = Feed()
         onpc.identifier = "#(onpc)"
         onpc.name = "ONPC 📺"
+        onpc.emoji = "📺"
         onpc.isLocationBased = false
         onpc.type = FeedType.private_feed
         onpc.numberConnected = 102
@@ -116,6 +125,8 @@ extension HomeController {
         let seb2 = Feed()
         seb2.identifier = "@seb"
         seb2.name = "Seb 🔥"
+        seb2.emoji = "🔥"
+        seb2.color = FeedColor.pink
         seb2.isLocationBased = false
         seb2.type = FeedType.personal_feed
         seb2.numberConnected = 56
@@ -123,11 +134,12 @@ extension HomeController {
         let menozzi = Feed()
         menozzi.identifier = "#(menozzi)"
         menozzi.name = "Menozzi 🍩"
+        menozzi.emoji = "🍩"
         menozzi.isLocationBased = false
         menozzi.type = FeedType.private_feed
         menozzi.numberConnected = 24
         
-        feeds = [france, fun, food, seb_feed, dals, onpc, seb2, menozzi]
+        feeds = [france, fun, food, foot, music, onpc, seb2, menozzi]
     }
     
     func createMessage(text: String, user: User, minutesAgo: Double) -> Message {
