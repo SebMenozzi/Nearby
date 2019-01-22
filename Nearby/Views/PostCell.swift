@@ -17,7 +17,8 @@ class PostCell: BaseCell {
             
             /* set details label attributes */
             let attributedText = NSMutableAttributedString(string: "\(post?.user?.name ?? "Unknown")\n", attributes: [
-                NSAttributedString.Key.font: UIFont(name: "GothamRounded-Medium", size: 18)!
+                NSAttributedString.Key.font: UIFont(name: "GothamRounded-Medium", size: 18)!,
+                NSAttributedString.Key.foregroundColor: UIColor.white
             ])
             
             attributedText.append(NSAttributedString(string: "0m", attributes: [
@@ -83,6 +84,8 @@ class PostCell: BaseCell {
         let textView = UITextView()
         textView.text = "This is a test!"
         textView.font = UIFont(name: "GothamRounded-Book", size: 16)
+        textView.backgroundColor = .clear
+        textView.textColor = .white
         textView.isEditable = false
         textView.isScrollEnabled = false
         textView.isSelectable = false
@@ -133,7 +136,7 @@ class PostCell: BaseCell {
     
     override func setupViews() {
         self.makeCorner(withRadius: 10)
-        self.backgroundColor = .white
+        self.backgroundColor = UIColor(white: 0, alpha: 0.1)
         
         addSubview(profileImageView)
         addSubview(detailsLabel)

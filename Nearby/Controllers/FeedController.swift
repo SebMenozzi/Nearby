@@ -161,6 +161,19 @@ class FeedController: UICollectionViewController {
     }
     
     private func setupNavigationItems() {
+        //let imgBack = UIImage(named: "return")
+        
+        //navigationController?.navigationBar.backIndicatorImage = imgBack
+        //navigationController?.navigationBar.backIndicatorTransitionMaskImage = imgBack
+        navigationController?.navigationBar.tintColor = .white
+        
+        navigationItem.leftItemsSupplementBackButton = true
+        navigationController?.navigationBar.topItem?.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
+        /*
+        navigationItem.backBarButtonItem = UIBarButtonItem(image: UIImage(named: "return"), style: .plain, target: self, action: nil)
+        navigationItem.backBarButtonItem?.tintColor = UIColor.white
+        */
+        
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "New Post", style: .plain, target: self, action: #selector(handleNewPost))
     }
     

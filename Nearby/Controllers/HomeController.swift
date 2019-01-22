@@ -73,8 +73,6 @@ class HomeController : UICollectionViewController, UIGestureRecognizerDelegate {
         button.setAttributedTitle(attributedTitle, for: .normal)
         button.titleLabel?.numberOfLines = 1
         
-        //button.setImage(UIImage(named: "menu"), for: .normal)
-        
         button.sizeToFit()
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: button)
