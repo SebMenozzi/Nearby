@@ -27,9 +27,10 @@ class BaseTabBarController: UITabBarController {
         let navigationLargeFont = UIFont(name: "GothamRounded-Bold", size: 34)
         let barButtonItemFont = UIFont(name: "GothamRounded-Medium", size: 18)
         
-        let image = UIImage(named: "return")
-        navigation.backIndicatorImage = image
-        navigation.backIndicatorTransitionMaskImage = image
+        let back_image = UIImage(named: "return")
+        let back_image_insets = UIEdgeInsets(top: 0, left: 6, bottom: 0, right: 0)
+        navigation.backIndicatorImage = back_image?.withAlignmentRectInsets(back_image_insets)
+        navigation.backIndicatorTransitionMaskImage = back_image
         
         navigation.titleTextAttributes = [
             NSAttributedString.Key.foregroundColor: UIColor.white,

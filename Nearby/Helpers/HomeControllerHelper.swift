@@ -36,7 +36,7 @@ extension HomeController {
         france.identifier = "#france"
         france.name = "France 🇫🇷🍷"
         france.emoji = "🇫🇷"
-        france.color = FeedColor.blue
+        france.color = FeedColor.violet
         france.isLocationBased = false
         france.type = FeedType.public_feed
         france.numberConnected = 10203
@@ -84,6 +84,7 @@ extension HomeController {
         fun.identifier = "#fun"
         fun.name = "Fun 🎉"
         fun.emoji = "🎉"
+        fun.color = FeedColor.blue
         fun.isLocationBased = false
         fun.type = FeedType.public_feed
         fun.numberConnected = 6456

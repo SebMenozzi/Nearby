@@ -58,8 +58,6 @@ class HomeHeader: UICollectionReusableView {
         return label
     }()
     
-    private var shadowLayer: CAShapeLayer!
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         

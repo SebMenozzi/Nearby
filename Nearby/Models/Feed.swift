@@ -32,7 +32,6 @@ class Feed: NSObject {
     var color: UIColor?
     var isLocationBased: Bool?
     var type: FeedType?
-    var messages: [Message]?
     var users: [User]?
     var numberConnected: Int?
     var posts: [Post]?

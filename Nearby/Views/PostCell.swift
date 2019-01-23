@@ -18,7 +18,7 @@ class PostCell: BaseCell {
             /* set details label attributes */
             let attributedText = NSMutableAttributedString(string: "\(post?.user?.name ?? "Unknown")\n", attributes: [
                 NSAttributedString.Key.font: UIFont(name: "GothamRounded-Medium", size: 18)!,
-                NSAttributedString.Key.foregroundColor: UIColor.white
+                NSAttributedString.Key.foregroundColor: UIColor.black
             ])
             
             attributedText.append(NSAttributedString(string: "0m", attributes: [
@@ -58,6 +58,8 @@ class PostCell: BaseCell {
         }
     }
     
+    private let containerView = UIView()
+    
     private let profileImageView : UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
@@ -70,6 +72,13 @@ class PostCell: BaseCell {
         let label = UILabel()
         label.numberOfLines = 2
         return label
+    }()
+    
+    private let questionLabel: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "question")!.withRenderingMode(.alwaysTemplate)
+        imageView.tintColor = UIColor(r: 0, g: 132, b: 255)
+        return imageView
     }()
     
     private let menuImageView : UIImageView = {
@@ -85,7 +94,7 @@ class PostCell: BaseCell {
         textView.text = "This is a test!"
         textView.font = UIFont(name: "GothamRounded-Book", size: 16)
         textView.backgroundColor = .clear
-        textView.textColor = .white
+        textView.textColor = .black
         textView.isEditable = false
         textView.isScrollEnabled = false
         textView.isSelectable = false
@@ -106,7 +115,7 @@ class PostCell: BaseCell {
         return imageView
     }()
     
-    private let containerView = UIView()
+    private let reactionView = UIView()
     
     static func bottomButton(text: String, imageName: String, color: UIColor) -> UIButton {
         let button = UIButton()
@@ -127,6 +136,7 @@ class PostCell: BaseCell {
     private let dividerLineView: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor(white: 0.5, alpha: 0.05)
+        view.isHidden = true
         return view
     }()
     
@@ -135,20 +145,33 @@ class PostCell: BaseCell {
     }
     
     override func setupViews() {
-        self.makeCorner(withRadius: 10)
-        self.backgroundColor = UIColor(white: 0, alpha: 0.1)
+        containerView.frame = frame
         
+        // set the shadow of the view's layer
+        containerView.layer.backgroundColor = UIColor.clear.cgColor
+        containerView.layer.shadowColor = UIColor.black.cgColor
+        containerView.layer.shadowOffset = CGSize(width: 1.0, height: 1.0)
+        containerView.layer.shadowOpacity = 0.2
+        containerView.layer.shadowRadius = 4.0
+        
+        makeCorner(withRadius: 10.0)
+        backgroundColor = UIColor.white
+        
+        addSubview(containerView)
         addSubview(profileImageView)
         addSubview(detailsLabel)
         addSubview(menuImageView)
         addSubview(statusTextView)
         addSubview(mediaImageView)
-        addSubview(containerView)
-        containerView.addSubview(shareButton)
-        containerView.addSubview(commentButton)
+        addSubview(reactionView)
+        reactionView.addSubview(shareButton)
+        reactionView.addSubview(commentButton)
         addSubview(dividerLineView)
         
-        addConstraintsWithFormat(format: "H:|-8-[v0(50)]-8-[v1]|", views: profileImageView, detailsLabel)
+        addConstraintsWithFormat(format: "H:|[v0]|", views: containerView)
+        addConstraintsWithFormat(format: "V:|[v0]|", views: containerView)
+        
+        addConstraintsWithFormat(format: "H:|-8-[v0(50)]-8-[v1]-[v2]-16-|", views: profileImageView, detailsLabel, menuImageView)
         
         addConstraintsWithFormat(format: "H:|-4-[v0]-4-|", views: statusTextView)
         
@@ -158,14 +181,16 @@ class PostCell: BaseCell {
         
         addConstraintsWithFormat(format: "V:|-12-[v0]", views: detailsLabel)
         
+        addConstraintsWithFormat(format: "V:|-18-[v0]", views: menuImageView)
+        
         // 8 + 50 + 4 + ? + 4 + (200?) + 8 + 30 + 8 + 1
-        addConstraintsWithFormat(format: "V:|-8-[v0(50)]-4-[v1]-4-[v2]-8-[v3(30)]-8-[v4(1)]|", views: profileImageView, statusTextView, mediaImageView, containerView, dividerLineView)
+        addConstraintsWithFormat(format: "V:|-8-[v0(50)]-4-[v1]-4-[v2]-8-[v3(30)]-8-[v4(1)]|", views: profileImageView, statusTextView, mediaImageView, reactionView, dividerLineView)
         
-        addConstraintsWithFormat(format: "H:|[v0]|", views: containerView)
+        addConstraintsWithFormat(format: "H:|[v0]|", views: reactionView)
         
-        containerView.addConstraintsWithFormat(format: "V:|[v0]|", views: shareButton)
-        containerView.addConstraintsWithFormat(format: "V:|[v0]|", views: commentButton)
-        containerView.addConstraintsWithFormat(format: "H:|-12-[v0(40)]-[v1(40)]-12-|", views: shareButton, commentButton)
+        reactionView.addConstraintsWithFormat(format: "V:|[v0]|", views: shareButton)
+        reactionView.addConstraintsWithFormat(format: "V:|[v0]|", views: commentButton)
+        reactionView.addConstraintsWithFormat(format: "H:|-12-[v0(40)]-[v1(40)]-12-|", views: shareButton, commentButton)
     }
     
     @objc func handlePhotoTap() {

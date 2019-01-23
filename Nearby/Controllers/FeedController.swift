@@ -31,7 +31,7 @@ class FeedController: UICollectionViewController {
         
         setupBackground()
         
-        collectionView?.backgroundColor = UIColor(white: 0, alpha: 0.8)
+        collectionView?.backgroundColor = UIColor(white: 0, alpha: 0)
         collectionView?.contentInset = UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0)
         collectionView?.alwaysBounceVertical = true // enable vertical scroll
         
@@ -44,7 +44,7 @@ class FeedController: UICollectionViewController {
     }
     
     private func setupBackground() {
-        view.backgroundColor = UIColor(r: 109, g: 80, b: 240)
+        view.backgroundColor = feed?.color
         
         let layerGradient = CAGradientLayer()
         layerGradient.colors = [UIColor(white: 0, alpha: 0).cgColor, UIColor(white: 0, alpha: 0.6).cgColor]
@@ -165,6 +165,12 @@ class FeedController: UICollectionViewController {
         
         //navigationController?.navigationBar.backIndicatorImage = imgBack
         //navigationController?.navigationBar.backIndicatorTransitionMaskImage = imgBack
+        
+        /*
+        navigationItem.backBarButtonItem = UIBarButtonItem(image: UIImage(named: "return"), style: .plain, target: self, action: nil)
+        navigationItem.backBarButtonItem?.tintColor = UIColor.white
+        */
+        navigationItem.backBarButtonItem?.imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 20)
         navigationController?.navigationBar.tintColor = .white
         
         navigationItem.leftItemsSupplementBackButton = true
@@ -246,7 +252,7 @@ extension FeedController : UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 8
+        return 12
     }
     
 }

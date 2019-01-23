@@ -22,4 +22,6 @@ class Post: NSObject {
     var mediaType: MediaType?
     var comments: [Comment]?
     var commentsCount: Int?
+    var lastComment: Comment?
+    var isQuestion: Bool?
 }
