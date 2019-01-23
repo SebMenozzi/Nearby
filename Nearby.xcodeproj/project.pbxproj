@@ -50,7 +50,6 @@
 		D160EE7021DFCE8D00D1BE75 /* ProfileHeaderLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D160EE6F21DFCE8D00D1BE75 /* ProfileHeaderLayout.swift */; };
 		D160EE7221E519E000D1BE75 /* DiscoverController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D160EE7121E519DF00D1BE75 /* DiscoverController.swift */; };
 		D164C09921D6CB4B00E17E13 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = D164C09821D6CB4B00E17E13 /* Message.swift */; };
-		D164C09B21D6E16700E17E13 /* HomeControllerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D164C09A21D6E16700E17E13 /* HomeControllerHelper.swift */; };
 		D164C09F21D7D9B000E17E13 /* SocketService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D164C09E21D7D9B000E17E13 /* SocketService.swift */; };
 		D1704AF721ED040700CB53FD /* WeatherHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1704AF621ED040700CB53FD /* WeatherHeader.swift */; };
 		D1704AFA21ED4B6B00CB53FD /* UIView.Extensions.Shimmer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1704AF921ED4B6B00CB53FD /* UIView.Extensions.Shimmer.swift */; };
@@ -62,6 +61,9 @@
 		D1704B0621EE90FD00CB53FD /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1704B0521EE90FD00CB53FD /* ImageCache.swift */; };
 		D1704B0821EF776E00CB53FD /* BaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1704B0721EF776D00CB53FD /* BaseCell.swift */; };
 		D17D3EFF21F8C792001224F1 /* MenuCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D17D3EFE21F8C792001224F1 /* MenuCategory.swift */; };
+		D17D3F0121F8F6AC001224F1 /* ChannelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D17D3F0021F8F6AC001224F1 /* ChannelCell.swift */; };
+		D17D3F0321F8F7D4001224F1 /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D17D3F0221F8F7D4001224F1 /* FeedCell.swift */; };
+		D17D3F0521F8FBF6001224F1 /* FeedCellHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D17D3F0421F8FBF6001224F1 /* FeedCellHelper.swift */; };
 		D180CBC021F812DD00C1E3A7 /* HomeHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D180CBBF21F812DD00C1E3A7 /* HomeHeader.swift */; };
 		D180CBC221F8167500C1E3A7 /* MenuCategoryBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D180CBC121F8167500C1E3A7 /* MenuCategoryBar.swift */; };
 		D188E1ED21F100B600FCCDC2 /* ModalController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D188E1EC21F100B600FCCDC2 /* ModalController.swift */; };
@@ -150,7 +152,6 @@
 		D160EE6F21DFCE8D00D1BE75 /* ProfileHeaderLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderLayout.swift; sourceTree = "<group>"; };
 		D160EE7121E519DF00D1BE75 /* DiscoverController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverController.swift; sourceTree = "<group>"; };
 		D164C09821D6CB4B00E17E13 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
-		D164C09A21D6E16700E17E13 /* HomeControllerHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeControllerHelper.swift; sourceTree = "<group>"; };
 		D164C09E21D7D9B000E17E13 /* SocketService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketService.swift; sourceTree = "<group>"; };
 		D1704AF621ED040700CB53FD /* WeatherHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherHeader.swift; sourceTree = "<group>"; };
 		D1704AF921ED4B6B00CB53FD /* UIView.Extensions.Shimmer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.Extensions.Shimmer.swift; sourceTree = "<group>"; };
@@ -162,6 +163,9 @@
 		D1704B0521EE90FD00CB53FD /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 		D1704B0721EF776D00CB53FD /* BaseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCell.swift; sourceTree = "<group>"; };
 		D17D3EFE21F8C792001224F1 /* MenuCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCategory.swift; sourceTree = "<group>"; };
+		D17D3F0021F8F6AC001224F1 /* ChannelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCell.swift; sourceTree = "<group>"; };
+		D17D3F0221F8F7D4001224F1 /* FeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
+		D17D3F0421F8FBF6001224F1 /* FeedCellHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCellHelper.swift; sourceTree = "<group>"; };
 		D180CBBF21F812DD00C1E3A7 /* HomeHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeader.swift; sourceTree = "<group>"; };
 		D180CBC121F8167500C1E3A7 /* MenuCategoryBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCategoryBar.swift; sourceTree = "<group>"; };
 		D188E1EC21F100B600FCCDC2 /* ModalController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalController.swift; sourceTree = "<group>"; };
@@ -347,10 +351,10 @@
 			isa = PBXGroup;
 			children = (
 				D13F5B0921D00EBD001B9681 /* DirectRoomsControllerHelper.swift */,
-				D164C09A21D6E16700E17E13 /* HomeControllerHelper.swift */,
 				D160EE4B21D91D8A00D1BE75 /* Extensions.swift */,
 				D160EE5F21DDA64100D1BE75 /* Extensions+UIView.swift */,
 				D1704B0521EE90FD00CB53FD /* ImageCache.swift */,
+				D17D3F0421F8FBF6001224F1 /* FeedCellHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -368,6 +372,8 @@
 				D1C0774D21EFB7490078F377 /* CommentCell.swift */,
 				D180CBBF21F812DD00C1E3A7 /* HomeHeader.swift */,
 				D180CBC121F8167500C1E3A7 /* MenuCategoryBar.swift */,
+				D17D3F0021F8F6AC001224F1 /* ChannelCell.swift */,
+				D17D3F0221F8F7D4001224F1 /* FeedCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -735,6 +741,7 @@
 				D160EE5C21DD5D4A00D1BE75 /* BaseSlidingController.swift in Sources */,
 				D1552A2D21F29CAD001BF783 /* UserDataService.swift in Sources */,
 				D160EE5E21DDA2EF00D1BE75 /* MenuCell.swift in Sources */,
+				D17D3F0121F8F6AC001224F1 /* ChannelCell.swift in Sources */,
 				D1DD7D1921D2F6FF00D6ECD6 /* User.swift in Sources */,
 				D13F5AFB21D00D8A001B9681 /* LoginViewController.swift in Sources */,
 				D1704AF721ED040700CB53FD /* WeatherHeader.swift in Sources */,
@@ -747,6 +754,7 @@
 				D1552A2321F22443001BF783 /* SignupNameController.swift in Sources */,
 				D160EE6D21DFC88000D1BE75 /* ProfileHeader.swift in Sources */,
 				D1C0774E21EFB7490078F377 /* CommentCell.swift in Sources */,
+				D17D3F0521F8FBF6001224F1 /* FeedCellHelper.swift in Sources */,
 				D160EE4E21D92F8E00D1BE75 /* AuthService.swift in Sources */,
 				D160EE5121D92FD900D1BE75 /* Constants.swift in Sources */,
 				D1552A2121F21B81001BF783 /* UILabel.Extensions.swift in Sources */,
@@ -767,10 +775,10 @@
 				D1552A1A21F14403001BF783 /* SignupController.swift in Sources */,
 				D1C0774C21EFB5FC0078F377 /* Comment.swift in Sources */,
 				D160EE5521D956E400D1BE75 /* MessageService.swift in Sources */,
+				D17D3F0321F8F7D4001224F1 /* FeedCell.swift in Sources */,
 				D13F5B0B21D00EBD001B9681 /* DirectRoomsControllerHelper.swift in Sources */,
 				D13F5B0621D00E6E001B9681 /* TouchInterceptingView.swift in Sources */,
 				D160EE4C21D91D8A00D1BE75 /* Extensions.swift in Sources */,
-				D164C09B21D6E16700E17E13 /* HomeControllerHelper.swift in Sources */,
 				D180CBC221F8167500C1E3A7 /* MenuCategoryBar.swift in Sources */,
 				D1DD7D2B21D53CE400D6ECD6 /* ApiRouter.swift in Sources */,
 				D160EE6421DECC4A00D1BE75 /* SearchController.swift in Sources */,

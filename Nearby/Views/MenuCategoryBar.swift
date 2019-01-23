@@ -25,15 +25,17 @@ class MenuCategoryBar: UIView, UICollectionViewDataSource, UICollectionViewDeleg
     
     let cellId = "cellId"
     
+    var homeController: HomeController?
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        collectionView.contentInset = UIEdgeInsets(top: 10, left: 0, bottom: 5, right: 10)
+        collectionView.contentInset = UIEdgeInsets(top: 10, left: 0, bottom: 5, right: 0)
         
         collectionView.register(MenuCategoryCell.self, forCellWithReuseIdentifier: cellId)
         
         addSubview(collectionView)
-        addConstraintsWithFormat(format: "H:|[v0]|", views: collectionView)
+        addConstraintsWithFormat(format: "H:|-10-[v0]-10-|", views: collectionView)
         addConstraintsWithFormat(format: "V:|[v0]|", views: collectionView)
         
         setupData()
@@ -94,6 +96,10 @@ class MenuCategoryBar: UIView, UICollectionViewDataSource, UICollectionViewDeleg
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 5
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        homeController?.scrollToMenuIndex(menuIndex: indexPath.item)
     }
     
     required init?(coder aDecoder: NSCoder) {

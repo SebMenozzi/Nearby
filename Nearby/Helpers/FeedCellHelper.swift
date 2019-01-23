@@ -1,14 +1,15 @@
 //
-//  HomeControllerHelper.swift
+//  FeedCellHelper.swift
 //  Nearby
 //
-//  Created by Sebastien Menozzi on 28/12/2018.
-//  Copyright © 2018 Sebastien Menozzi. All rights reserved.
+//  Created by Sebastien Menozzi on 23/01/2019.
+//  Copyright © 2019 Sebastien Menozzi. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
-extension HomeController {
+extension FeedCell {
+    
     func setupData() {
         
         // Users
@@ -16,19 +17,19 @@ extension HomeController {
             "username": "seb",
             "name": "Seb 🔥",
             "picture": "seb"
-        ])
+            ])
         
         let cesar = User(dictionary: [
             "username": "cesar",
             "name": "MattGorko 🕺",
             "picture": "cesar"
-        ])
+            ])
         
         let steve = User(dictionary: [
             "username": "steve",
             "name": "Steve Jobs",
             "picture": "steve"
-        ])
+            ])
         
         // France
         
@@ -143,8 +144,4 @@ extension HomeController {
         feeds = [france, fun, food, foot, music, onpc, seb2, menozzi]
     }
     
-    func createMessage(text: String, user: User, minutesAgo: Double) -> Message {
-        return Message(dictionary: ["user": user, "text": text, "date": Date().addingTimeInterval(-minutesAgo * 60)])
-    }
 }
-
