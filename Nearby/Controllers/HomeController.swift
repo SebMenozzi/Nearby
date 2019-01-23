@@ -13,6 +13,11 @@ class HomeController : UICollectionViewController, UIGestureRecognizerDelegate {
     let cellId = "cellId"
     let headerId = "header"
     
+    let menuCategoryBar: MenuCategoryBar = {
+        let menu = MenuCategoryBar()
+        return menu
+    }()
+    
     var feeds: [Feed]?
     
     override func viewDidLoad() {
@@ -20,14 +25,37 @@ class HomeController : UICollectionViewController, UIGestureRecognizerDelegate {
         
         setupBackground()
         
+        collectionView?.contentInset = UIEdgeInsets(top: 55, left: 0, bottom: 10, right: 0)
         collectionView?.backgroundColor = UIColor(white: 0, alpha: 0.8)
         collectionView?.alwaysBounceVertical = true
         collectionView.register(FeedCell.self, forCellWithReuseIdentifier: cellId)
         //collectionView?.register(HomeHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerId)
         
-        setupNavigationItems()
+        //setupNavigationItems()
         
         setupData()
+        
+        setupMenuCategoryBar()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // Hide the navigation bar on the this view controller
+        navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        // Show the navigation bar on other view controllers
+        navigationController?.setNavigationBarHidden(false, animated: animated)
+    }
+    
+    private func setupMenuCategoryBar() {
+        view.addSubview(menuCategoryBar)
+        view.addConstraintsWithFormat(format: "H:|[v0]|", views: menuCategoryBar)
+        view.addConstraintsWithFormat(format: "V:|-15-[v0(45)]", views: menuCategoryBar)
     }
     
     private func setupBackground() {
@@ -42,6 +70,7 @@ class HomeController : UICollectionViewController, UIGestureRecognizerDelegate {
         view?.layer.addSublayer(layerGradient)
     }
     
+    /*
     override func viewWillAppear(_ animated: Bool) {
         setupNavigationController()
     }
@@ -50,6 +79,7 @@ class HomeController : UICollectionViewController, UIGestureRecognizerDelegate {
         navigationController?.navigationBar.barTintColor = .clear
         navigationController?.navigationBar.isTranslucent = true
     }
+    */
     
     private func setupNavigationItems() {        
         let button = UIButton(type: .system)
@@ -184,18 +214,6 @@ class FeedCell: BaseCell {
             
             detailsLabel.attributedText = attributedText
             
-            /*
-            if (feed?.type == FeedType.public_feed) {
-                signImageView.image = UIImage(named: "hashtag")!.withRenderingMode(.alwaysTemplate)
-            }
-            else if (feed?.type == FeedType.private_feed) {
-                signImageView.image = UIImage(named: "lock")!.withRenderingMode(.alwaysTemplate)
-            }
-            else if (feed?.type == FeedType.personal_feed) {
-                signImageView.image = UIImage(named: "at")!.withRenderingMode(.alwaysTemplate)
-            }
-            */
-            
             emojiLabel.text = feed?.emoji
             
             if let color = feed?.color {
@@ -229,7 +247,7 @@ class FeedCell: BaseCell {
         emojiContainerView.addSubview(emojiLabel)
         addSubview(detailsLabel)
         
-        addConstraintsWithFormat(format: "H:|-18-[v0(56)]-12-[v1]|", views: emojiContainerView, detailsLabel)
+        addConstraintsWithFormat(format: "H:|-12-[v0(56)]-12-[v1]|", views: emojiContainerView, detailsLabel)
         
         addConstraintsWithFormat(format: "V:|-12-[v0]", views: detailsLabel)
         

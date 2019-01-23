@@ -52,7 +52,7 @@
 		D164C09921D6CB4B00E17E13 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = D164C09821D6CB4B00E17E13 /* Message.swift */; };
 		D164C09B21D6E16700E17E13 /* HomeControllerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D164C09A21D6E16700E17E13 /* HomeControllerHelper.swift */; };
 		D164C09F21D7D9B000E17E13 /* SocketService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D164C09E21D7D9B000E17E13 /* SocketService.swift */; };
-		D1704AF721ED040700CB53FD /* HomeHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1704AF621ED040700CB53FD /* HomeHeader.swift */; };
+		D1704AF721ED040700CB53FD /* WeatherHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1704AF621ED040700CB53FD /* WeatherHeader.swift */; };
 		D1704AFA21ED4B6B00CB53FD /* UIView.Extensions.Shimmer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1704AF921ED4B6B00CB53FD /* UIView.Extensions.Shimmer.swift */; };
 		D1704AFC21EE140D00CB53FD /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1704AFB21EE140D00CB53FD /* LoginController.swift */; };
 		D1704AFE21EE2EA100CB53FD /* FeedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1704AFD21EE2EA100CB53FD /* FeedController.swift */; };
@@ -61,6 +61,9 @@
 		D1704B0421EE8E6200CB53FD /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1704B0321EE8E6200CB53FD /* PostCell.swift */; };
 		D1704B0621EE90FD00CB53FD /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1704B0521EE90FD00CB53FD /* ImageCache.swift */; };
 		D1704B0821EF776E00CB53FD /* BaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1704B0721EF776D00CB53FD /* BaseCell.swift */; };
+		D17D3EFF21F8C792001224F1 /* MenuCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D17D3EFE21F8C792001224F1 /* MenuCategory.swift */; };
+		D180CBC021F812DD00C1E3A7 /* HomeHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D180CBBF21F812DD00C1E3A7 /* HomeHeader.swift */; };
+		D180CBC221F8167500C1E3A7 /* MenuCategoryBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D180CBC121F8167500C1E3A7 /* MenuCategoryBar.swift */; };
 		D188E1ED21F100B600FCCDC2 /* ModalController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D188E1EC21F100B600FCCDC2 /* ModalController.swift */; };
 		D1C0774C21EFB5FC0078F377 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C0774B21EFB5FC0078F377 /* Comment.swift */; };
 		D1C0774E21EFB7490078F377 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C0774D21EFB7490078F377 /* CommentCell.swift */; };
@@ -149,7 +152,7 @@
 		D164C09821D6CB4B00E17E13 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		D164C09A21D6E16700E17E13 /* HomeControllerHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeControllerHelper.swift; sourceTree = "<group>"; };
 		D164C09E21D7D9B000E17E13 /* SocketService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketService.swift; sourceTree = "<group>"; };
-		D1704AF621ED040700CB53FD /* HomeHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeader.swift; sourceTree = "<group>"; };
+		D1704AF621ED040700CB53FD /* WeatherHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherHeader.swift; sourceTree = "<group>"; };
 		D1704AF921ED4B6B00CB53FD /* UIView.Extensions.Shimmer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.Extensions.Shimmer.swift; sourceTree = "<group>"; };
 		D1704AFB21EE140D00CB53FD /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		D1704AFD21EE2EA100CB53FD /* FeedController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedController.swift; sourceTree = "<group>"; };
@@ -158,6 +161,9 @@
 		D1704B0321EE8E6200CB53FD /* PostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
 		D1704B0521EE90FD00CB53FD /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 		D1704B0721EF776D00CB53FD /* BaseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCell.swift; sourceTree = "<group>"; };
+		D17D3EFE21F8C792001224F1 /* MenuCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCategory.swift; sourceTree = "<group>"; };
+		D180CBBF21F812DD00C1E3A7 /* HomeHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeader.swift; sourceTree = "<group>"; };
+		D180CBC121F8167500C1E3A7 /* MenuCategoryBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCategoryBar.swift; sourceTree = "<group>"; };
 		D188E1EC21F100B600FCCDC2 /* ModalController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalController.swift; sourceTree = "<group>"; };
 		D1C0774B21EFB5FC0078F377 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		D1C0774D21EFB7490078F377 /* CommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
@@ -356,10 +362,12 @@
 				D13F5B0421D00E6E001B9681 /* TouchInterceptingView.swift */,
 				D160EE5D21DDA2EF00D1BE75 /* MenuCell.swift */,
 				D160EE6C21DFC88000D1BE75 /* ProfileHeader.swift */,
-				D1704AF621ED040700CB53FD /* HomeHeader.swift */,
+				D1704AF621ED040700CB53FD /* WeatherHeader.swift */,
 				D1704B0321EE8E6200CB53FD /* PostCell.swift */,
 				D1704B0721EF776D00CB53FD /* BaseCell.swift */,
 				D1C0774D21EFB7490078F377 /* CommentCell.swift */,
+				D180CBBF21F812DD00C1E3A7 /* HomeHeader.swift */,
+				D180CBC121F8167500C1E3A7 /* MenuCategoryBar.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -431,6 +439,7 @@
 				D164C09821D6CB4B00E17E13 /* Message.swift */,
 				D1704AFF21EE341D00CB53FD /* Post.swift */,
 				D1C0774B21EFB5FC0078F377 /* Comment.swift */,
+				D17D3EFE21F8C792001224F1 /* MenuCategory.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -728,8 +737,9 @@
 				D160EE5E21DDA2EF00D1BE75 /* MenuCell.swift in Sources */,
 				D1DD7D1921D2F6FF00D6ECD6 /* User.swift in Sources */,
 				D13F5AFB21D00D8A001B9681 /* LoginViewController.swift in Sources */,
-				D1704AF721ED040700CB53FD /* HomeHeader.swift in Sources */,
+				D1704AF721ED040700CB53FD /* WeatherHeader.swift in Sources */,
 				D1DD7D2021D5157F00D6ECD6 /* Feed.swift in Sources */,
+				D180CBC021F812DD00C1E3A7 /* HomeHeader.swift in Sources */,
 				D1704AFA21ED4B6B00CB53FD /* UIView.Extensions.Shimmer.swift in Sources */,
 				D1DD7D2921D53C6800D6ECD6 /* ApiClient.swift in Sources */,
 				D13F5AFD21D00D8A001B9681 /* BaseTabBarController.swift in Sources */,
@@ -742,6 +752,7 @@
 				D1552A2121F21B81001BF783 /* UILabel.Extensions.swift in Sources */,
 				D1552A1E21F167CE001BF783 /* UIButton.Extensions.swift in Sources */,
 				D13F5AF921D00D8A001B9681 /* DirectRoomsController.swift in Sources */,
+				D17D3EFF21F8C792001224F1 /* MenuCategory.swift in Sources */,
 				D160EE7221E519E000D1BE75 /* DiscoverController.swift in Sources */,
 				D1704B0221EE368C00CB53FD /* CommentController.swift in Sources */,
 				D164C09921D6CB4B00E17E13 /* Message.swift in Sources */,
@@ -760,6 +771,7 @@
 				D13F5B0621D00E6E001B9681 /* TouchInterceptingView.swift in Sources */,
 				D160EE4C21D91D8A00D1BE75 /* Extensions.swift in Sources */,
 				D164C09B21D6E16700E17E13 /* HomeControllerHelper.swift in Sources */,
+				D180CBC221F8167500C1E3A7 /* MenuCategoryBar.swift in Sources */,
 				D1DD7D2B21D53CE400D6ECD6 /* ApiRouter.swift in Sources */,
 				D160EE6421DECC4A00D1BE75 /* SearchController.swift in Sources */,
 				D160EE7021DFCE8D00D1BE75 /* ProfileHeaderLayout.swift in Sources */,

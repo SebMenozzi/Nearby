@@ -145,17 +145,17 @@ class PostCell: BaseCell {
     }
     
     override func setupViews() {
+        // set the shadow of the view's layer
+        layer.backgroundColor = UIColor.clear.cgColor
+        layer.shadowColor = UIColor.black.cgColor
+        layer.shadowOffset = CGSize(width: 1.0, height: 1.0)
+        layer.shadowOpacity = 0.4
+        layer.shadowRadius = 4.0
+        
         containerView.frame = frame
         
-        // set the shadow of the view's layer
-        containerView.layer.backgroundColor = UIColor.clear.cgColor
-        containerView.layer.shadowColor = UIColor.black.cgColor
-        containerView.layer.shadowOffset = CGSize(width: 1.0, height: 1.0)
-        containerView.layer.shadowOpacity = 0.2
-        containerView.layer.shadowRadius = 4.0
-        
-        makeCorner(withRadius: 10.0)
-        backgroundColor = UIColor.white
+        containerView.makeCorner(withRadius: 10.0)
+        containerView.backgroundColor = UIColor.white
         
         addSubview(containerView)
         addSubview(profileImageView)

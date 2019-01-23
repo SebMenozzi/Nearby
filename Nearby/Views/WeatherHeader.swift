@@ -2,13 +2,13 @@
 //  HomeHeader.swift
 //  Nearby
 //
-//  Created by Sebastien Menozzi on 23/01/2019.
+//  Created by Sebastien Menozzi on 14/01/2019.
 //  Copyright © 2019 Sebastien Menozzi. All rights reserved.
 //
 
 import UIKit
 
-class HomeHeader: UICollectionReusableView {
+class WeatherHeader: UICollectionReusableView {
     let containerView = UIView()
     let topView = UIView()
     let bottomView = UIView()

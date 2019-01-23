@@ -16,4 +16,3 @@ class Comment: NSObject {
     var mediaType: MediaType?
     var likesCount: Int?
 }
-
