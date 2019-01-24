@@ -15,23 +15,26 @@ class PostCell: BaseCell {
         didSet {
             profileImageView.image = UIImage(named: post?.user?.picture ?? "default")
             
-            /* set details label attributes */
-            let attributedText = NSMutableAttributedString(string: "\(post?.user?.name ?? "Unknown")\n", attributes: [
+            let attributedText = NSMutableAttributedString(string: "\(post?.user?.name ?? "Unknown") ", attributes: [
                 NSAttributedString.Key.font: UIFont(name: "GothamRounded-Medium", size: 18)!,
-                NSAttributedString.Key.foregroundColor: UIColor.black
+                NSAttributedString.Key.foregroundColor: UIColor.white
             ])
             
-            attributedText.append(NSAttributedString(string: "0m", attributes: [
-                NSAttributedString.Key.font: UIFont(name: "GothamRounded-Book", size: 14)!,
-                NSAttributedString.Key.foregroundColor: UIColor(r: 201, g: 205, b: 209)
+            attributedText.append(NSAttributedString(string: "\(post?.user?.username ?? "unknown")\n", attributes: [
+                NSAttributedString.Key.font: UIFont(name: "GothamRounded-Medium", size: 16)!,
+                NSAttributedString.Key.foregroundColor: UIColor(white: 1.0, alpha: 0.6)
             ]))
             
             let paragraphStyle = NSMutableParagraphStyle()
-            paragraphStyle.lineSpacing = 4
-            
+            paragraphStyle.lineSpacing = 8
             attributedText.addAttribute(.paragraphStyle, value: paragraphStyle, range: NSMakeRange(0, attributedText.length))
             
-            detailsLabel.attributedText = attributedText
+            attributedText.append(NSAttributedString(string: "\(post?.text ?? "This is a test!")", attributes: [
+                NSAttributedString.Key.font: UIFont(name: "GothamRounded-Book", size: 16)!,
+                NSAttributedString.Key.foregroundColor: UIColor.white
+            ]))
+            
+            messageTextView.attributedText = attributedText
             
             if post?.commentsCount ?? 0 > 0 {
                 let purple = UIColor(r: 169, g: 86, b: 205)
@@ -45,8 +48,6 @@ class PostCell: BaseCell {
             
             commentButton.setTitle(post?.commentsCount?.description ?? "0", for: .normal)
             
-            statusTextView.text = post?.text
-            
             // hide the image if there is no photo linked
             if post?.mediaType == MediaType.none {
                 mediaImageView.isHidden = true
@@ -58,48 +59,34 @@ class PostCell: BaseCell {
         }
     }
     
-    private let containerView = UIView()
-    
     private let profileImageView : UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
         imageView.backgroundColor = .black
         imageView.makeCorner(withRadius: 25)
+        imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
     
-    private let detailsLabel: UILabel = {
-        let label = UILabel()
-        label.numberOfLines = 2
-        return label
-    }()
-    
-    private let questionLabel: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = UIImage(named: "question")!.withRenderingMode(.alwaysTemplate)
-        imageView.tintColor = UIColor(r: 0, g: 132, b: 255)
-        return imageView
+    private let messageTextView: UITextView = {
+        let textView = UITextView()
+        textView.backgroundColor = .clear
+        textView.textColor = .white
+        textView.isEditable = false
+        textView.isScrollEnabled = false
+        textView.isSelectable = false
+        textView.isUserInteractionEnabled = false
+        textView.translatesAutoresizingMaskIntoConstraints = false
+        return textView
     }()
     
     private let menuImageView : UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
         imageView.image = UIImage(named: "menu_post")!.withRenderingMode(.alwaysTemplate)
-        imageView.tintColor = .black
+        imageView.tintColor = .white
+        imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
-    }()
-    
-    private let statusTextView : UITextView = {
-        let textView = UITextView()
-        textView.text = "This is a test!"
-        textView.font = UIFont(name: "GothamRounded-Book", size: 16)
-        textView.backgroundColor = .clear
-        textView.textColor = .black
-        textView.isEditable = false
-        textView.isScrollEnabled = false
-        textView.isSelectable = false
-        textView.isUserInteractionEnabled = false
-        return textView
     }()
     
     private lazy var mediaImageView : UIImageView = {
@@ -112,6 +99,7 @@ class PostCell: BaseCell {
         imageView.contentMode = .scaleAspectFit
         imageView.isUserInteractionEnabled = true
         imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handlePhotoTap)))
+        imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
     
@@ -133,18 +121,20 @@ class PostCell: BaseCell {
     private let commentButton = PostCell.bottomButton(text: "0", imageName: "comment", color: UIColor(r: 220, g: 220, b: 220))
     private let shareButton = PostCell.bottomButton(text: "0", imageName: "share", color: UIColor(r: 0, g: 132, b: 255))
     
-    private let dividerLineView: UIView = {
-        let view = UIView()
-        view.backgroundColor = UIColor(white: 0.5, alpha: 0.05)
-        view.isHidden = true
-        return view
-    }()
-    
     @objc func handleComment(_ sender: UIButton) {
         print("Show comments")
     }
     
+    private let feedLineView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+        view.makeCorner(withRadius: 1.25)
+        return view
+    }()
+    
     override func setupViews() {
+        super.setupViews()
+        
         // set the shadow of the view's layer
         layer.backgroundColor = UIColor.clear.cgColor
         layer.shadowColor = UIColor.black.cgColor
@@ -152,45 +142,54 @@ class PostCell: BaseCell {
         layer.shadowOpacity = 0.4
         layer.shadowRadius = 4.0
         
-        containerView.frame = frame
+        backgroundColor = .clear
         
-        containerView.makeCorner(withRadius: 10.0)
-        containerView.backgroundColor = UIColor.white
-        
-        addSubview(containerView)
         addSubview(profileImageView)
-        addSubview(detailsLabel)
+        addSubview(messageTextView)
         addSubview(menuImageView)
-        addSubview(statusTextView)
-        addSubview(mediaImageView)
-        addSubview(reactionView)
-        reactionView.addSubview(shareButton)
-        reactionView.addSubview(commentButton)
-        addSubview(dividerLineView)
         
-        addConstraintsWithFormat(format: "H:|[v0]|", views: containerView)
-        addConstraintsWithFormat(format: "V:|[v0]|", views: containerView)
+        setupProfileImageView()
+        setupMessageTextView()
+        setupMenuImageView()
+        setupBottomButtons()
+    }
+    
+    private func setupProfileImageView() {
+        profileImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8).isActive = true
+        profileImageView.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        profileImageView.widthAnchor.constraint(equalToConstant: 50).isActive = true
+        profileImageView.topAnchor.constraint(equalTo: topAnchor, constant: 8).isActive = true
+    }
+    
+    private func setupMessageTextView() {
+        messageTextView.leadingAnchor.constraint(equalTo: profileImageView.trailingAnchor, constant: 8).isActive = true
+        messageTextView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -30).isActive = true
+        messageTextView.topAnchor.constraint(equalTo: topAnchor, constant: 8).isActive = true
+        messageTextView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+    }
+    
+    private func setupMenuImageView() {
+        menuImageView.topAnchor.constraint(equalTo: topAnchor, constant: 18).isActive = true
+        menuImageView.rightAnchor.constraint(equalTo: rightAnchor, constant: -16).isActive = true
+        menuImageView.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        menuImageView.widthAnchor.constraint(equalToConstant: 20).isActive = true
+    }
+    
+    private func setupBottomButtons() {
+        let view = UIView()
+        view.backgroundColor = .red
         
-        addConstraintsWithFormat(format: "H:|-8-[v0(50)]-8-[v1]-[v2]-16-|", views: profileImageView, detailsLabel, menuImageView)
+        let buttonStackView = UIStackView(arrangedSubviews: [view])
+        buttonStackView.axis = .horizontal
+        buttonStackView.distribution = .fillEqually
+        buttonStackView.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(buttonStackView)
         
-        addConstraintsWithFormat(format: "H:|-4-[v0]-4-|", views: statusTextView)
-        
-        addConstraintsWithFormat(format: "H:|-12-[v0]-12-|", views: mediaImageView)
-        
-        addConstraintsWithFormat(format: "H:|[v0]|", views: dividerLineView)
-        
-        addConstraintsWithFormat(format: "V:|-12-[v0]", views: detailsLabel)
-        
-        addConstraintsWithFormat(format: "V:|-18-[v0]", views: menuImageView)
-        
-        // 8 + 50 + 4 + ? + 4 + (200?) + 8 + 30 + 8 + 1
-        addConstraintsWithFormat(format: "V:|-8-[v0(50)]-4-[v1]-4-[v2]-8-[v3(30)]-8-[v4(1)]|", views: profileImageView, statusTextView, mediaImageView, reactionView, dividerLineView)
-        
-        addConstraintsWithFormat(format: "H:|[v0]|", views: reactionView)
-        
-        reactionView.addConstraintsWithFormat(format: "V:|[v0]|", views: shareButton)
-        reactionView.addConstraintsWithFormat(format: "V:|[v0]|", views: commentButton)
-        reactionView.addConstraintsWithFormat(format: "H:|-12-[v0(40)]-[v1(40)]-12-|", views: shareButton, commentButton)
+        buttonStackView.topAnchor.constraint(equalTo: messageTextView.topAnchor, constant: 8).isActive = true
+        buttonStackView.leadingAnchor.constraint(equalTo: profileImageView.trailingAnchor, constant: 8).isActive = true
+        //buttonStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -30).isActive = true
+        buttonStackView.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        //buttonStackView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
     }
     
     @objc func handlePhotoTap() {

@@ -87,7 +87,7 @@ class BaseTabBarController: UITabBarController {
     
     private func setupViewControllers() {
         let homeController = HomeController(collectionViewLayout: UICollectionViewFlowLayout())
-        let directRoomsController = DirectRoomsController(collectionViewLayout: UICollectionViewFlowLayout())
+        let directRoomsController = ChannelsController(collectionViewLayout: UICollectionViewFlowLayout())
         let searchController = SearchController(collectionViewLayout: UICollectionViewFlowLayout())
         let profileController = ProfileController(collectionViewLayout: ProfileHeaderLayout())
         

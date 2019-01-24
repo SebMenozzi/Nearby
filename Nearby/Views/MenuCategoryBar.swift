@@ -44,7 +44,7 @@ class MenuCategoryBar: UIView, UICollectionViewDataSource, UICollectionViewDeleg
     
     private func setupData() {
         let my_channel = MenuCategory()
-        my_channel.text = "My Channels"
+        my_channel.text = "Subcriptions"
         
         let popular = MenuCategory()
         popular.text = "Popular 🔥"

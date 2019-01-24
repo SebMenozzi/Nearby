@@ -17,7 +17,7 @@
 		D13F5ACC21D00B71001B9681 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D13F5ACA21D00B71001B9681 /* LaunchScreen.storyboard */; };
 		D13F5AD721D00B71001B9681 /* NearbyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13F5AD621D00B71001B9681 /* NearbyTests.swift */; };
 		D13F5AE221D00B71001B9681 /* NearbyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13F5AE121D00B71001B9681 /* NearbyUITests.swift */; };
-		D13F5AF921D00D8A001B9681 /* DirectRoomsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13F5AF321D00D8A001B9681 /* DirectRoomsController.swift */; };
+		D13F5AF921D00D8A001B9681 /* ChannelsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13F5AF321D00D8A001B9681 /* ChannelsController.swift */; };
 		D13F5AFA21D00D8A001B9681 /* BottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13F5AF421D00D8A001B9681 /* BottomSheetViewController.swift */; };
 		D13F5AFB21D00D8A001B9681 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13F5AF521D00D8A001B9681 /* LoginViewController.swift */; };
 		D13F5AFC21D00D8A001B9681 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13F5AF621D00D8A001B9681 /* HomeController.swift */; };
@@ -25,7 +25,7 @@
 		D13F5AFE21D00D8A001B9681 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13F5AF821D00D8A001B9681 /* ChatViewController.swift */; };
 		D13F5B0621D00E6E001B9681 /* TouchInterceptingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13F5B0421D00E6E001B9681 /* TouchInterceptingView.swift */; };
 		D13F5B0721D00E6E001B9681 /* ChatMessageViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13F5B0521D00E6E001B9681 /* ChatMessageViewCell.swift */; };
-		D13F5B0B21D00EBD001B9681 /* DirectRoomsControllerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13F5B0921D00EBD001B9681 /* DirectRoomsControllerHelper.swift */; };
+		D13F5B0B21D00EBD001B9681 /* ChannelsControllerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13F5B0921D00EBD001B9681 /* ChannelsControllerHelper.swift */; };
 		D1552A1A21F14403001BF783 /* SignupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1552A1921F14403001BF783 /* SignupController.swift */; };
 		D1552A1C21F16737001BF783 /* UIButton.Extensions.Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1552A1B21F16737001BF783 /* UIButton.Extensions.Animations.swift */; };
 		D1552A1E21F167CE001BF783 /* UIButton.Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1552A1D21F167CE001BF783 /* UIButton.Extensions.swift */; };
@@ -64,6 +64,7 @@
 		D17D3F0121F8F6AC001224F1 /* ChannelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D17D3F0021F8F6AC001224F1 /* ChannelCell.swift */; };
 		D17D3F0321F8F7D4001224F1 /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D17D3F0221F8F7D4001224F1 /* FeedCell.swift */; };
 		D17D3F0521F8FBF6001224F1 /* FeedCellHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D17D3F0421F8FBF6001224F1 /* FeedCellHelper.swift */; };
+		D17D3F0721F9FFC3001224F1 /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D17D3F0621F9FFC3001224F1 /* Channel.swift */; };
 		D180CBC021F812DD00C1E3A7 /* HomeHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D180CBBF21F812DD00C1E3A7 /* HomeHeader.swift */; };
 		D180CBC221F8167500C1E3A7 /* MenuCategoryBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D180CBC121F8167500C1E3A7 /* MenuCategoryBar.swift */; };
 		D188E1ED21F100B600FCCDC2 /* ModalController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D188E1EC21F100B600FCCDC2 /* ModalController.swift */; };
@@ -119,7 +120,7 @@
 		D13F5ADD21D00B71001B9681 /* NearbyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NearbyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D13F5AE121D00B71001B9681 /* NearbyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearbyUITests.swift; sourceTree = "<group>"; };
 		D13F5AE321D00B71001B9681 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D13F5AF321D00D8A001B9681 /* DirectRoomsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DirectRoomsController.swift; sourceTree = "<group>"; };
+		D13F5AF321D00D8A001B9681 /* ChannelsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelsController.swift; sourceTree = "<group>"; };
 		D13F5AF421D00D8A001B9681 /* BottomSheetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomSheetViewController.swift; sourceTree = "<group>"; };
 		D13F5AF521D00D8A001B9681 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		D13F5AF621D00D8A001B9681 /* HomeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
@@ -127,7 +128,7 @@
 		D13F5AF821D00D8A001B9681 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		D13F5B0421D00E6E001B9681 /* TouchInterceptingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TouchInterceptingView.swift; sourceTree = "<group>"; };
 		D13F5B0521D00E6E001B9681 /* ChatMessageViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatMessageViewCell.swift; sourceTree = "<group>"; };
-		D13F5B0921D00EBD001B9681 /* DirectRoomsControllerHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DirectRoomsControllerHelper.swift; sourceTree = "<group>"; };
+		D13F5B0921D00EBD001B9681 /* ChannelsControllerHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelsControllerHelper.swift; sourceTree = "<group>"; };
 		D1552A1921F14403001BF783 /* SignupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupController.swift; sourceTree = "<group>"; };
 		D1552A1B21F16737001BF783 /* UIButton.Extensions.Animations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButton.Extensions.Animations.swift; sourceTree = "<group>"; };
 		D1552A1D21F167CE001BF783 /* UIButton.Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButton.Extensions.swift; sourceTree = "<group>"; };
@@ -166,6 +167,7 @@
 		D17D3F0021F8F6AC001224F1 /* ChannelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCell.swift; sourceTree = "<group>"; };
 		D17D3F0221F8F7D4001224F1 /* FeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
 		D17D3F0421F8FBF6001224F1 /* FeedCellHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCellHelper.swift; sourceTree = "<group>"; };
+		D17D3F0621F9FFC3001224F1 /* Channel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
 		D180CBBF21F812DD00C1E3A7 /* HomeHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeader.swift; sourceTree = "<group>"; };
 		D180CBC121F8167500C1E3A7 /* MenuCategoryBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCategoryBar.swift; sourceTree = "<group>"; };
 		D188E1EC21F100B600FCCDC2 /* ModalController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalController.swift; sourceTree = "<group>"; };
@@ -334,7 +336,7 @@
 				D126474621F3701B00639240 /* Menu */,
 				D1552A1F21F216C3001BF783 /* Signup */,
 				D160EE5A21DD5D2100D1BE75 /* Base */,
-				D13F5AF321D00D8A001B9681 /* DirectRoomsController.swift */,
+				D13F5AF321D00D8A001B9681 /* ChannelsController.swift */,
 				D13F5AF621D00D8A001B9681 /* HomeController.swift */,
 				D160EE6321DECC4A00D1BE75 /* SearchController.swift */,
 				D160EE6A21DFC5A800D1BE75 /* ProfileController.swift */,
@@ -350,7 +352,7 @@
 		D13F5B0221D00E00001B9681 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				D13F5B0921D00EBD001B9681 /* DirectRoomsControllerHelper.swift */,
+				D13F5B0921D00EBD001B9681 /* ChannelsControllerHelper.swift */,
 				D160EE4B21D91D8A00D1BE75 /* Extensions.swift */,
 				D160EE5F21DDA64100D1BE75 /* Extensions+UIView.swift */,
 				D1704B0521EE90FD00CB53FD /* ImageCache.swift */,
@@ -446,6 +448,7 @@
 				D1704AFF21EE341D00CB53FD /* Post.swift */,
 				D1C0774B21EFB5FC0078F377 /* Comment.swift */,
 				D17D3EFE21F8C792001224F1 /* MenuCategory.swift */,
+				D17D3F0621F9FFC3001224F1 /* Channel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -737,6 +740,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D160EE5921DD215200D1BE75 /* MenuController.swift in Sources */,
+				D17D3F0721F9FFC3001224F1 /* Channel.swift in Sources */,
 				D126474521F36CFE00639240 /* InitController.swift in Sources */,
 				D160EE5C21DD5D4A00D1BE75 /* BaseSlidingController.swift in Sources */,
 				D1552A2D21F29CAD001BF783 /* UserDataService.swift in Sources */,
@@ -759,7 +763,7 @@
 				D160EE5121D92FD900D1BE75 /* Constants.swift in Sources */,
 				D1552A2121F21B81001BF783 /* UILabel.Extensions.swift in Sources */,
 				D1552A1E21F167CE001BF783 /* UIButton.Extensions.swift in Sources */,
-				D13F5AF921D00D8A001B9681 /* DirectRoomsController.swift in Sources */,
+				D13F5AF921D00D8A001B9681 /* ChannelsController.swift in Sources */,
 				D17D3EFF21F8C792001224F1 /* MenuCategory.swift in Sources */,
 				D160EE7221E519E000D1BE75 /* DiscoverController.swift in Sources */,
 				D1704B0221EE368C00CB53FD /* CommentController.swift in Sources */,
@@ -776,7 +780,7 @@
 				D1C0774C21EFB5FC0078F377 /* Comment.swift in Sources */,
 				D160EE5521D956E400D1BE75 /* MessageService.swift in Sources */,
 				D17D3F0321F8F7D4001224F1 /* FeedCell.swift in Sources */,
-				D13F5B0B21D00EBD001B9681 /* DirectRoomsControllerHelper.swift in Sources */,
+				D13F5B0B21D00EBD001B9681 /* ChannelsControllerHelper.swift in Sources */,
 				D13F5B0621D00E6E001B9681 /* TouchInterceptingView.swift in Sources */,
 				D160EE4C21D91D8A00D1BE75 /* Extensions.swift in Sources */,
 				D180CBC221F8167500C1E3A7 /* MenuCategoryBar.swift in Sources */,

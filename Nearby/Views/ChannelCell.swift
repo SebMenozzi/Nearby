@@ -24,12 +24,12 @@ class ChannelCell: BaseCell {
             let attributedText = NSMutableAttributedString(string: "\(feed?.name ?? "Unknown")\n", attributes: [
                 NSAttributedString.Key.font: UIFont(name: "GothamRounded-Book", size: 18)!,
                 NSAttributedString.Key.foregroundColor: UIColor.white
-                ])
+            ])
             
             attributedText.append(NSAttributedString(string: "\(feed?.identifier ?? "#unknown")", attributes: [
                 NSAttributedString.Key.font: UIFont(name: "GothamRounded-Book", size: 14)!,
                 NSAttributedString.Key.foregroundColor: UIColor(white: 1, alpha: 0.8)
-                ]))
+            ]))
             
             let paragraphStyle = NSMutableParagraphStyle()
             paragraphStyle.lineSpacing = 4

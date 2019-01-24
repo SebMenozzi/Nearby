@@ -1,5 +1,5 @@
 //
-//  DirectRoomsController.swift
+//  ChannelsController.swift
 //  Nearby
 //
 //  Created by Sebastien Menozzi on 07/12/2018.
@@ -8,19 +8,18 @@
 
 import UIKit
 
-class DirectRoomsController: UICollectionViewController {
+class ChannelsController: UICollectionViewController {
     
-    /*
     private let cellId = "cellId"
     
-    var directRooms: [Room]?
+    var channels: [Channel]?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         collectionView?.backgroundColor = UIColor.white // put the background in white
         collectionView.alwaysBounceVertical = true // enable vertical scroll
-        collectionView.register(DirectRoomCell.self, forCellWithReuseIdentifier: cellId)
+        collectionView.register(Channel2Cell.self, forCellWithReuseIdentifier: cellId)
         
         setupNavigationItems()
         
@@ -45,19 +44,19 @@ class DirectRoomsController: UICollectionViewController {
     }
 }
 
-extension DirectRoomsController : UICollectionViewDelegateFlowLayout {
+extension ChannelsController : UICollectionViewDelegateFlowLayout {
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if let count = directRooms?.count {
+        if let count = channels?.count {
             return count
         }
         return 0
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! DirectRoomCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! Channel2Cell
         
-        if let room = directRooms?[indexPath.item] {
-            cell.room = room
+        if let channel = channels?[indexPath.item] {
+            cell.channel = channel
         }
         
         return cell
@@ -69,15 +68,17 @@ extension DirectRoomsController : UICollectionViewDelegateFlowLayout {
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        /*
         let layout = UICollectionViewFlowLayout()
         let controller = ChatViewController(collectionViewLayout: layout)
-        let room = directRooms?[indexPath.item]
-        controller.room = room
+        let channel = channels?[indexPath.item]
+        controller.channel = channel
         navigationController?.pushViewController(controller, animated: true)
+        */
     }
 }
 
-class DirectRoomCell: BaseCell {
+class Channel2Cell: BaseCell {
     override var isHighlighted: Bool {
         didSet {
             backgroundColor = isHighlighted ? UIColor.black : UIColor.white
@@ -87,19 +88,12 @@ class DirectRoomCell: BaseCell {
         }
     }
     
-    var room: Room? {
+    var channel: Channel? {
         didSet {
-            let length = room?.messages?.count
+            /*
+            let length = channel?.messages?.count
 
-            if let lastMessage = room?.messages?[length! - 1] {
-                
-                nameLabel.text = lastMessage.user?.username 
-                
-                if let picture = lastMessage.user?.picture {
-                    profileImageView.loadImageUsingCache(urlString: picture)
-                    hasReadImageView.loadImageUsingCache(urlString: picture)
-                }
-                
+            if let lastMessage = channel?.messages?[length! - 1] {
                 messageLabel.text = lastMessage.text
                 
                 if let date =  lastMessage.date {
@@ -123,6 +117,15 @@ class DirectRoomCell: BaseCell {
                     timeLabel.text = dateFormatter.string(from: date)
                 }
             }
+            */
+            /*
+            nameLabel.text = user?.username
+            
+            if let picture = user?.picture {
+                profileImageView.loadImageUsingCache(urlString: picture)
+                hasReadImageView.loadImageUsingCache(urlString: picture)
+            }
+            */
         }
     }
     
@@ -206,5 +209,4 @@ class DirectRoomCell: BaseCell {
         
         containerView.addConstraintsWithFormat(format: "V:[v0(20)]|", views: hasReadImageView)
     }
- */
 }
