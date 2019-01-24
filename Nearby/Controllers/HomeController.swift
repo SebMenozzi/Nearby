@@ -49,17 +49,20 @@ class HomeController : UICollectionViewController, UIGestureRecognizerDelegate {
             flowLayout.minimumLineSpacing = 0
         }
         
-        collectionView?.contentInset = UIEdgeInsets(top: 200, left: 0, bottom: 30, right: 0)
+        collectionView?.contentInset = UIEdgeInsets(top: 170, left: 0, bottom: 0, right: 0)
         collectionView?.scrollIndicatorInsets = UIEdgeInsets(top: 200, left: 0, bottom: 0, right: 0)
         collectionView?.backgroundColor = UIColor(white: 0, alpha: 0.8)
         collectionView.register(FeedCell.self, forCellWithReuseIdentifier: cellId)
         collectionView?.isPagingEnabled = true
+        collectionView?.showsHorizontalScrollIndicator = false
     }
     
     private func setupMenuCategoryBar() {
         view.addSubview(menuCategoryBar)
         view.addConstraintsWithFormat(format: "H:|[v0]|", views: menuCategoryBar)
         view.addConstraintsWithFormat(format: "V:|-15-[v0(45)]", views: menuCategoryBar)
+        // select the first feed item
+        menuCategoryBar.collectionView.selectItem(at: NSIndexPath(row: 0, section: 0) as IndexPath, animated: false, scrollPosition: .left)
     }
     
     func scrollToMenuIndex(menuIndex: Int) {
@@ -80,6 +83,7 @@ class HomeController : UICollectionViewController, UIGestureRecognizerDelegate {
         layerGradient.startPoint = CGPoint(x: 0, y: 0.8)
         layerGradient.endPoint = CGPoint(x: 0, y: 1)
         layerGradient.frame = view.frame
+        layerGradient.masksToBounds = true
         //layerGradient.shouldRasterize = true
         view?.layer.addSublayer(layerGradient)
     }
@@ -103,8 +107,8 @@ extension HomeController : UICollectionViewDelegateFlowLayout {
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
-        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! FeedCell
+        cell.homeController = self
         return cell
     }
     

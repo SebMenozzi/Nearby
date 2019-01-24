@@ -17,19 +17,19 @@ extension FeedCell {
             "username": "seb",
             "name": "Seb 🔥",
             "picture": "seb"
-            ])
+        ])
         
         let cesar = User(dictionary: [
             "username": "cesar",
             "name": "MattGorko 🕺",
             "picture": "cesar"
-            ])
+        ])
         
         let steve = User(dictionary: [
             "username": "steve",
             "name": "Steve Jobs",
             "picture": "steve"
-            ])
+        ])
         
         // France
         

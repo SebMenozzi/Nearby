@@ -31,6 +31,7 @@ class MenuCategoryBar: UIView, UICollectionViewDataSource, UICollectionViewDeleg
         super.init(frame: frame)
         
         collectionView.contentInset = UIEdgeInsets(top: 10, left: 0, bottom: 5, right: 0)
+        collectionView.showsHorizontalScrollIndicator = false
         
         collectionView.register(MenuCategoryCell.self, forCellWithReuseIdentifier: cellId)
         
@@ -51,7 +52,10 @@ class MenuCategoryBar: UIView, UICollectionViewDataSource, UICollectionViewDeleg
         let celebrities = MenuCategory()
         celebrities.text = "Celibrities ✨"
         
-        categories = [my_channel, popular, celebrities]
+        let football = MenuCategory()
+        football.text = "Football ⚽️"
+        
+        categories = [my_channel, popular, celebrities, football]
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

@@ -24,6 +24,8 @@ class FeedCell: BaseCell, UICollectionViewDataSource, UICollectionViewDelegate, 
     
     private let cellId = "cellId"
     
+    var homeController: HomeController?
+    
     override func setupViews() {
         super.setupViews()
         
@@ -62,7 +64,7 @@ class FeedCell: BaseCell, UICollectionViewDataSource, UICollectionViewDelegate, 
         let controller = FeedController(collectionViewLayout: layout)
         let feed = feeds?[indexPath.item]
         controller.feed = feed
-        //navigationController?.pushViewController(controller, animated: true)
+        homeController?.navigationController?.pushViewController(controller, animated: true)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
