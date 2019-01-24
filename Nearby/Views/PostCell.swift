@@ -91,7 +91,7 @@ class PostCell: BaseCell {
     
     private lazy var mediaImageView : UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "cesar")
+        imageView.image = UIImage()
         imageView.backgroundColor = .black
         imageView.clipsToBounds = true
         imageView.layer.cornerRadius = 16
@@ -102,8 +102,6 @@ class PostCell: BaseCell {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
-    
-    private let reactionView = UIView()
     
     static func bottomButton(text: String, imageName: String, color: UIColor) -> UIButton {
         let button = UIButton()
@@ -119,11 +117,7 @@ class PostCell: BaseCell {
     }
     
     private let commentButton = PostCell.bottomButton(text: "0", imageName: "comment", color: UIColor(r: 220, g: 220, b: 220))
-    private let shareButton = PostCell.bottomButton(text: "0", imageName: "share", color: UIColor(r: 0, g: 132, b: 255))
-    
-    @objc func handleComment(_ sender: UIButton) {
-        print("Show comments")
-    }
+    private let repostButton = PostCell.bottomButton(text: "0", imageName: "share", color: UIColor(r: 0, g: 132, b: 255))
     
     private let feedLineView: UIView = {
         let view = UIView()
@@ -147,10 +141,12 @@ class PostCell: BaseCell {
         addSubview(profileImageView)
         addSubview(messageTextView)
         addSubview(menuImageView)
+        addSubview(mediaImageView)
         
         setupProfileImageView()
         setupMessageTextView()
         setupMenuImageView()
+        setupMediaImageView()
         setupBottomButtons()
     }
     
@@ -165,34 +161,42 @@ class PostCell: BaseCell {
         messageTextView.leadingAnchor.constraint(equalTo: profileImageView.trailingAnchor, constant: 8).isActive = true
         messageTextView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -30).isActive = true
         messageTextView.topAnchor.constraint(equalTo: topAnchor, constant: 8).isActive = true
-        messageTextView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+        //messageTextView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+    }
+    
+    private func setupMediaImageView() {
+        mediaImageView.topAnchor.constraint(equalTo: messageTextView.bottomAnchor, constant: 8).isActive = true
+        mediaImageView.leadingAnchor.constraint(equalTo: profileImageView.trailingAnchor, constant: 8).isActive = true
+        mediaImageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8).isActive = true
+        //mediaImageView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
     }
     
     private func setupMenuImageView() {
         menuImageView.topAnchor.constraint(equalTo: topAnchor, constant: 18).isActive = true
-        menuImageView.rightAnchor.constraint(equalTo: rightAnchor, constant: -16).isActive = true
+        menuImageView.rightAnchor.constraint(equalTo: rightAnchor, constant: -8).isActive = true
         menuImageView.heightAnchor.constraint(equalToConstant: 20).isActive = true
         menuImageView.widthAnchor.constraint(equalToConstant: 20).isActive = true
     }
     
     private func setupBottomButtons() {
-        let view = UIView()
-        view.backgroundColor = .red
-        
-        let buttonStackView = UIStackView(arrangedSubviews: [view])
+        let buttonStackView = UIStackView(arrangedSubviews: [repostButton, commentButton])
         buttonStackView.axis = .horizontal
         buttonStackView.distribution = .fillEqually
         buttonStackView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(buttonStackView)
         
-        buttonStackView.topAnchor.constraint(equalTo: messageTextView.topAnchor, constant: 8).isActive = true
+        buttonStackView.topAnchor.constraint(equalTo: mediaImageView.bottomAnchor, constant: 8).isActive = true
         buttonStackView.leadingAnchor.constraint(equalTo: profileImageView.trailingAnchor, constant: 8).isActive = true
-        //buttonStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -30).isActive = true
+        buttonStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -30).isActive = true
         buttonStackView.heightAnchor.constraint(equalToConstant: 20).isActive = true
-        //buttonStackView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+        buttonStackView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
     }
     
     @objc func handlePhotoTap() {
         feedController?.animateImageView(statusImageView: mediaImageView)
+    }
+    
+    @objc func handleComment(_ sender: UIButton) {
+        print("Show comments")
     }
 }

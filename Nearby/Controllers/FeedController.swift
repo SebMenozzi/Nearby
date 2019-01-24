@@ -31,7 +31,7 @@ class FeedController: UICollectionViewController {
         
         setupBackground()
         
-        collectionView?.backgroundColor = UIColor(white: 0, alpha: 0)
+        collectionView?.backgroundColor = UIColor(white: 0, alpha: 0.8)
         collectionView?.contentInset = UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0)
         collectionView?.alwaysBounceVertical = true // enable vertical scroll
         
@@ -44,7 +44,8 @@ class FeedController: UICollectionViewController {
     }
     
     private func setupBackground() {
-        view.backgroundColor = feed?.color
+        //view.backgroundColor = feed?.color
+        view.backgroundColor = UIColor(r: 109, g: 80, b: 240)
         
         let layerGradient = CAGradientLayer()
         layerGradient.colors = [UIColor(white: 0, alpha: 0).cgColor, UIColor(white: 0, alpha: 0.6).cgColor]
@@ -216,7 +217,7 @@ extension FeedController : UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        var height : CGFloat = 8 + 50 + 8 + 30 + 8 + 1
+        var height : CGFloat = 68
         
         let post = feed?.posts?[indexPath.item]
         
@@ -225,7 +226,7 @@ extension FeedController : UICollectionViewDelegateFlowLayout {
         }
         
         if post?.mediaType == MediaType.photo {
-            height += 200 + 4
+            height += 200
         }
         
         return CGSize.init(width: view.frame.width - 2 * padding, height: height + 16)
